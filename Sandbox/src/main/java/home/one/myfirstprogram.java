@@ -1,6 +1,6 @@
 package home.one;
 
-public class myfirstprogram {
+public class MyFirstProgram {
 
 	public static void main(String[] args) {
 
