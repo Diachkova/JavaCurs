@@ -10,17 +10,25 @@ public class MyFirstProgram {
     System.out.println("Расстояние между точками с координатами " + "(" + p1.x + ";" + p1.y + ")" + " и " +
           "(" + p2.x + ";" + p2.y + ")" + " = " + p1.distance(p2));
 
-    Point p3 = new Point(7, 7);
-    Point p4 = new Point(7, 7);
+    p1 = new Point(7, 7);
+    p2 = new Point(7, 7);
 
-    System.out.println("Расстояние между точками с координатами " + "(" + p3.x + ";" + p3.y + ")" + " и " +
-            "(" + p4.x + ";" + p4.y + ")" + " = " + p3.distance(p4));
+      System.out.println("Расстояние между точками с координатами " + "(" + p1.x + ";" + p1.y + ")" + " и " +
+              "(" + p2.x + ";" + p2.y + ")" + " = " + p1.distance(p2));
 
-    Point p5 = new Point(-5, 8);
-    Point p6 = new Point(8, -5);
+    p1 = new Point(-5, 8);
+    p2 = new Point(8, -5);
 
-    System.out.println("Расстояние между точками с координатами " + "(" + p5.x + ";" + p5.y + ")" + " и " +
-            "(" + p6.x + ";" + p6.y + ")" + " = " + p5.distance(p6));
-	}
+      System.out.println("Расстояние между точками с координатами " + "(" + p1.x + ";" + p1.y + ")" + " и " +
+              "(" + p2.x + ";" + p2.y + ")" + " = " + p1.distance(p2));
+
+      p1 = new Point(7, 7);
+      p2 = new Point(7, 7);
+      Distance1 t = new Distance1(p1, p2);
+
+      System.out.println("Расстояние между точками с координатами " + "(" + p1.x + ";" + p1.y + ")" + " и " +
+              "(" + p2.x + ";" + p2.y + ")" + " = " + t.res());
+
+  }
 
 }
