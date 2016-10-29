@@ -1,14 +1,13 @@
 package home.one;
+import org.testng.Assert;
 import org.testng.annotations.Test;
-/**
- * Created by Andrey on 29.10.2016.
- */
-public class SquareTests {
+
+public class DistanceOtherTests {
   @Test
   public void testRes(){
     Point p1 = new Point(7, 7);
     Point p2 = new Point(7, 7);
-    Distance1 t = new Distance1(p1, p2);
-    assert t.res() == 0;
+    DistanceOther t = new DistanceOther(p1, p2);
+    Assert.assertEquals(t.res(), 0.0);
   }
 }

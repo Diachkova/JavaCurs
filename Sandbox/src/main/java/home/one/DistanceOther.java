@@ -1,13 +1,11 @@
 package home.one;
 
-/**
- * Created by Andrey on 29.10.2016.
- */
-public class Distance1 {
+
+public class DistanceOther {
     public Point point1;
     public Point point2;
 
-    public Distance1(Point point1, Point point2) {
+    public DistanceOther(Point point1, Point point2) {
       this.point1 = point1;
       this.point2 = point2;
     }

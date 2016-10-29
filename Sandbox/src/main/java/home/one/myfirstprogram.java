@@ -24,7 +24,7 @@ public class MyFirstProgram {
 
       p1 = new Point(7, 7);
       p2 = new Point(7, 7);
-      Distance1 t = new Distance1(p1, p2);
+      DistanceOther t = new DistanceOther(p1, p2);
 
       System.out.println("Расстояние между точками с координатами " + "(" + p1.x + ";" + p1.y + ")" + " и " +
               "(" + p2.x + ";" + p2.y + ")" + " = " + t.res());
