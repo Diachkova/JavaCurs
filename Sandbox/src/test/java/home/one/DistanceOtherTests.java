@@ -3,6 +3,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class DistanceOtherTests {
+
   @Test
   public void testRes(){
     Point p1 = new Point(7, 7);

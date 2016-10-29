@@ -2,9 +2,6 @@ package home.one;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-/**
- * Created by Andrey on 29.10.2016.
- */
 public class DistanceTest {
   @Test
   public void distanceTest(){
