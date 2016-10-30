@@ -11,7 +11,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.*;
 
 public class GroupCreationTestsChrome {
-  ChromeDriver wd;
+  public WebDriver wd;
 
 
   @BeforeMethod
