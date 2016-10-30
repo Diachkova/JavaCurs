@@ -34,8 +34,8 @@ public class ContactCreation {
   }
 
   @Test
-  public void ContactCreation() {
-    contactCreation();
+  public void testContactCreation() {
+    gotoPageContactCreation();
     fillContactForm(new ContactData("Nadia", "Yurievna", "Diachkova", "Nicki", "\\9", "MyOwn", "Moscow Street House",
             "terra72@inbox.ru", "\\9", "\\9", "\\9", "\\9"));
     contentContact();
@@ -84,7 +84,7 @@ public class ContactCreation {
     wd.findElement(By.name("email")).sendKeys(contactData.getEmail());
   }
 
-  private void contactCreation() {
+  private void gotoPageContactCreation() {
     wd.findElement(By.linkText("add new")).click();
   }
 
