@@ -1,3 +1,6 @@
+package home.two.addressbook;
+
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
@@ -12,19 +15,17 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.*;
 import static org.openqa.selenium.OutputType.*;
 
-public class  {
-    FirefoxDriver wd;
+public class GroupCreationTestsChrome {
+    ChromeDriver wd;
+
     
     @BeforeMethod
     public void setUp() throws Exception {
-        wd = new FirefoxDriver();
-        wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-    }
-    
-    @Test
-    public void () {
+        System.setProperty("webdriver.chrome.driver", "C:\\Nadia\\driver\\chromedriver_win32\\chromedriver.exe");
+        wd = new ChromeDriver();
+        wd.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
         wd.get("http://localhost/addressbook/");
-        wd.findElement(By.id("LoginForm")).click();
+        wd.findElement(By.id("content")).click();
         wd.findElement(By.name("user")).click();
         wd.findElement(By.name("user")).clear();
         wd.findElement(By.name("user")).sendKeys("admin");
@@ -32,17 +33,22 @@ public class  {
         wd.findElement(By.name("pass")).clear();
         wd.findElement(By.name("pass")).sendKeys("secret");
         wd.findElement(By.xpath("//form[@id='LoginForm']/input[3]")).click();
+    }
+    
+    @Test
+    public void testGroupCreation() {
         wd.findElement(By.linkText("groups")).click();
         wd.findElement(By.name("new")).click();
         wd.findElement(By.name("group_name")).click();
         wd.findElement(By.name("group_name")).clear();
-        wd.findElement(By.name("group_name")).sendKeys("Test2");
+        wd.findElement(By.name("group_name")).sendKeys("Test1");
+        wd.findElement(By.name("group_header")).click();
         wd.findElement(By.name("group_header")).click();
         wd.findElement(By.name("group_header")).clear();
-        wd.findElement(By.name("group_header")).sendKeys("test3");
+        wd.findElement(By.name("group_header")).sendKeys("Test1");
         wd.findElement(By.name("group_footer")).click();
         wd.findElement(By.name("group_footer")).clear();
-        wd.findElement(By.name("group_footer")).sendKeys("test4");
+        wd.findElement(By.name("group_footer")).sendKeys("Test2");
         wd.findElement(By.name("submit")).click();
         wd.findElement(By.linkText("group page")).click();
     }

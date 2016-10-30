@@ -1,10 +1,11 @@
 package home.two.addressbook;
 
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
-import static org.testng.Assert.*;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 import java.util.concurrent.TimeUnit;
 import java.util.Date;
@@ -15,21 +16,16 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.*;
 import static org.openqa.selenium.OutputType.*;
 
-public class GroupCreationTests {
-    ChromeDriver wd;
-
+public class GroupCreationTestsFF {
+    FirefoxDriver wd;
     
-    @BeforeMethod
+    @Before
     public void setUp() throws Exception {
-        System.setProperty("webdriver.chrome.driver", "C:\\Nadia\\driver\\chromedriver_win32\\chromedriver.exe");
-        wd = new ChromeDriver();
-        wd.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
-    }
-    
-    @Test
-    public void GroupCreationTests() {
+        System.setProperty("webdriver.gecko.driver", "C:\\Nadia\\driver\\geckodriver-v0.11.1-win64\\geckodriver.exe");
+        wd = new FirefoxDriver();
+        wd.manage().timeouts().implicitlyWait(200, TimeUnit.SECONDS);
         wd.get("http://localhost/addressbook/");
-        wd.findElement(By.id("content")).click();
+        wd.findElement(By.id("LoginForm")).click();
         wd.findElement(By.name("user")).click();
         wd.findElement(By.name("user")).clear();
         wd.findElement(By.name("user")).sendKeys("admin");
@@ -37,23 +33,26 @@ public class GroupCreationTests {
         wd.findElement(By.name("pass")).clear();
         wd.findElement(By.name("pass")).sendKeys("secret");
         wd.findElement(By.xpath("//form[@id='LoginForm']/input[3]")).click();
+    }
+    
+    @Test
+    public void testGroupCreation2() {
         wd.findElement(By.linkText("groups")).click();
         wd.findElement(By.name("new")).click();
         wd.findElement(By.name("group_name")).click();
         wd.findElement(By.name("group_name")).clear();
-        wd.findElement(By.name("group_name")).sendKeys("Test1");
-        wd.findElement(By.name("group_header")).click();
+        wd.findElement(By.name("group_name")).sendKeys("Test2");
         wd.findElement(By.name("group_header")).click();
         wd.findElement(By.name("group_header")).clear();
-        wd.findElement(By.name("group_header")).sendKeys("Test1");
+        wd.findElement(By.name("group_header")).sendKeys("test3");
         wd.findElement(By.name("group_footer")).click();
         wd.findElement(By.name("group_footer")).clear();
-        wd.findElement(By.name("group_footer")).sendKeys("Test2");
+        wd.findElement(By.name("group_footer")).sendKeys("test4");
         wd.findElement(By.name("submit")).click();
         wd.findElement(By.linkText("group page")).click();
     }
     
-    @AfterMethod
+    @After
     public void tearDown() {
         wd.quit();
     }
