@@ -11,7 +11,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.*;
 
 public class ContactCreation {
-  ChromeDriver wd;
+  public WebDriver wd;
 
   @BeforeMethod
   public void setUp() throws Exception {
