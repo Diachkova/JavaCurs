@@ -1,4 +1,4 @@
-package home.two.addressbook;
+package home.two.addressbook.model;
 
 public class GroupData {
   private final String groupName;
