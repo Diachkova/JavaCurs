@@ -20,37 +20,29 @@ public class ContactHelper {
   }
 
   public void fillContactForm(ContactData contactData) {
-    wd.findElement(By.name("firstname")).click();
-    wd.findElement(By.name("firstname")).clear();
-    wd.findElement(By.name("firstname")).sendKeys(contactData.getName());
-    wd.findElement(By.name("middlename")).click();
-    wd.findElement(By.name("middlename")).clear();
-    wd.findElement(By.name("middlename")).sendKeys(contactData.getMiddleName());
-    wd.findElement(By.name("lastname")).click();
-    wd.findElement(By.name("lastname")).clear();
-    wd.findElement(By.name("lastname")).sendKeys(contactData.getSurname());
-    wd.findElement(By.name("nickname")).click();
-    wd.findElement(By.name("nickname")).clear();
-    wd.findElement(By.name("nickname")).sendKeys(contactData.getNik());
-    wd.findElement(By.name("title")).click();
-    wd.findElement(By.name("title")).sendKeys(contactData.getTitle());
-    wd.findElement(By.name("company")).click();
-    wd.findElement(By.name("company")).clear();
-    wd.findElement(By.name("company")).sendKeys(contactData.getCompany());
-    wd.findElement(By.name("address")).click();
-    wd.findElement(By.name("address")).clear();
-    wd.findElement(By.name("address")).sendKeys(contactData.getAddress());
-    wd.findElement(By.name("home")).click();
-    wd.findElement(By.name("home")).sendKeys(contactData.getHome());
-    wd.findElement(By.name("mobile")).click();
-    wd.findElement(By.name("mobile")).sendKeys(contactData.getMobile());
-    wd.findElement(By.name("work")).click();
-    wd.findElement(By.name("work")).sendKeys(contactData.getWork());
-    wd.findElement(By.name("fax")).click();
-    wd.findElement(By.name("fax")).sendKeys(contactData.getFax());
-    wd.findElement(By.name("email")).click();
-    wd.findElement(By.name("email")).clear();
-    wd.findElement(By.name("email")).sendKeys(contactData.getEmail());
+    typeCont(By.name("firstname"), contactData.getName());
+    typeCont(By.name("middlename"), contactData.getMiddleName());
+    typeCont(By.name("lastname"), contactData.getSurname());
+    typeCont(By.name("nickname"), contactData.getNik());
+    typeEmpty(By.name("title"), contactData.getTitle());
+    typeCont(By.name("company"), contactData.getCompany());
+    typeCont(By.name("address"), contactData.getAddress());
+    typeEmpty(By.name("home"), contactData.getHome());
+    typeEmpty(By.name("mobile"), contactData.getMobile());
+    typeEmpty(By.name("work"), contactData.getWork());
+    typeEmpty(By.name("fax"), contactData.getFax());
+    typeCont(By.name("email"), contactData.getEmail());
+  }
+
+  private void typeEmpty(By title, String textTitle) {
+    wd.findElement(title).click();
+    wd.findElement(title).sendKeys(textTitle);
+  }
+
+  private void typeCont(By firstname, String textName) {
+    wd.findElement(firstname).click();
+    wd.findElement(firstname).clear();
+    wd.findElement(firstname).sendKeys(textName);
   }
 
   public void deleteContact() {
