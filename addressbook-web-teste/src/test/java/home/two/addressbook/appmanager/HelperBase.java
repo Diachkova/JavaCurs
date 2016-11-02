@@ -20,9 +20,11 @@ public class HelperBase {
     return wd.findElement(locator);
   }
 
+
   protected void type(By locator, String text) {
-    getElement(locator).clear();
-    getElement(locator).sendKeys(text);
+    WebElement subject = getElement(locator);
+    subject.clear();
+    subject.sendKeys(text);
   }
 
   public void popUpClose() {
