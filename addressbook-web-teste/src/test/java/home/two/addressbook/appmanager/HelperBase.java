@@ -3,22 +3,26 @@ package home.two.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class HelperBase {
-  public WebDriver wd;
+  private WebDriver wd;
 
-  public HelperBase(WebDriver wd) {
+  HelperBase(WebDriver wd) {
     this.wd = wd;
   }
 
   protected void click(By locator) {
-    wd.findElement(locator).click();
+    getElement(locator).click();
+  }
+
+  private WebElement getElement(By locator) {
+    return wd.findElement(locator);
   }
 
   protected void type(By locator, String text) {
-    click(locator);
-    wd.findElement(locator).clear();
-    wd.findElement(locator).sendKeys(text);
+    getElement(locator).clear();
+    getElement(locator).sendKeys(text);
   }
 
   public void popUpClose() {

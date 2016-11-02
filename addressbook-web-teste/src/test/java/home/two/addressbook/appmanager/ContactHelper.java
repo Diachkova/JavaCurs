@@ -30,7 +30,7 @@ public class ContactHelper extends HelperBase {
   }
 
   public void deleteContact() {
-    click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
+    click(By.xpath("//div[@id='content']/form[2]//input[@value='Delete']"));
     popUpClose();
 
   }
@@ -45,7 +45,7 @@ public class ContactHelper extends HelperBase {
   }
 
   public void clickContactUpdate() {
-    click(By.xpath("//div[@id='content']/form[1]/input[22]"));
+    click(By.xpath("//div[@id='content']/form[1]//input['Enter']"));
   }
 
   public void clickContactDetails() {
