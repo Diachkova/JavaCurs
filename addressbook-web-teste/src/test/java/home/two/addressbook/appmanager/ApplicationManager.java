@@ -43,4 +43,8 @@ public class ApplicationManager {
   public ContactHelper getContactHelper() {
     return contactHelper;
   }
+
+  public SessionHelper getSessionHelper() {
+    return sessionHelper;
+  }
 }

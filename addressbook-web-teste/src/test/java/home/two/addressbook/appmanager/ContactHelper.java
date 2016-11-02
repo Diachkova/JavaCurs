@@ -3,9 +3,8 @@ package home.two.addressbook.appmanager;
 import home.two.addressbook.model.ContactData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.testng.xml.dom.OnElement;
 
-public class ContactHelper extends HelperBase{
+public class ContactHelper extends HelperBase {
 
   public ContactHelper(WebDriver wd) {
     super(wd);
@@ -36,8 +35,27 @@ public class ContactHelper extends HelperBase{
 
   }
 
-    public void selectContact() {
+  public void selectContact() {
     click(By.name("selected[]"));
+  }
+
+  public void clickContactEdit() {
+    click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
+
+  }
+
+  public void clickContactUpdate() {
+    click(By.xpath("//div[@id='content']/form[1]/input[22]"));
+  }
+
+  public void clickContactDetails() {
+    click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[7]/a/img"));
+
+  }
+
+  public void clickContactModify() {
+    click(By.name("modifiy"));
+
   }
 
 }
