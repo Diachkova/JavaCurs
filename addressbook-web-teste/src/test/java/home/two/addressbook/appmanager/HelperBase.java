@@ -21,6 +21,10 @@ public class HelperBase {
     wd.findElement(locator).sendKeys(text);
   }
 
+  public void popUpClose() {
+    wd.switchTo().alert().accept();
+  }
+
   public boolean isAlertPresent() {
     try {
       wd.switchTo().alert();

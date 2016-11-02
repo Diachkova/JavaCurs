@@ -12,10 +12,6 @@ public class ContactHelper extends HelperBase{
   }
 
   public void contentContact() {
-    clickObject();
-  }
-
-  private void clickObject() {
     click(By.xpath("//div[@id='content']/form/input[21]"));
   }
 
@@ -34,15 +30,14 @@ public class ContactHelper extends HelperBase{
     type(By.name("email"), contactData.getEmail());
   }
 
-
   public void deleteContact() {
-    //wd.findElement(By.xpath("//div[@id='content']/form[2]/div[2]/input")).click();
     click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
-    wd.switchTo().alert().accept();
+    popUpClose();
 
   }
 
-  public void selectContact() {
+    public void selectContact() {
     click(By.name("selected[]"));
   }
+
 }
