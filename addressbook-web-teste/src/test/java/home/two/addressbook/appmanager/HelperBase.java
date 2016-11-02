@@ -4,9 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 
-/**
- * Created by Andrey on 31.10.2016.
- */
 public class HelperBase {
   public WebDriver wd;
 

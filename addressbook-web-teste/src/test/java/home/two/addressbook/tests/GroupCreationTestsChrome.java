@@ -12,7 +12,7 @@ public class GroupCreationTestsChrome extends TestBase {
     app.getGroupHelper().createNewGroup();
     app.getGroupHelper().fillGroupForm(new GroupData("Test1", "Test2", "Test3"));
     app.getGroupHelper().submitGroupCreation();
-    app.getGroupHelper().returnToGroupPage();
+    app.getNavigationHelper().gotoGroupPage();
   }
 
 }

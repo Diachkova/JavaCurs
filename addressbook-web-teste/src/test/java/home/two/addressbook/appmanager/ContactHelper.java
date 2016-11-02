@@ -3,15 +3,12 @@ package home.two.addressbook.appmanager;
 import home.two.addressbook.model.ContactData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.testng.xml.dom.OnElement;
 
 public class ContactHelper extends HelperBase{
 
   public ContactHelper(WebDriver wd) {
     super(wd);
-  }
-
-  public void returnToContactsPage() {
-    click(By.xpath("//div/div[4]/div/i/a[2]"));
   }
 
   public void contentContact() {
@@ -39,6 +36,13 @@ public class ContactHelper extends HelperBase{
 
 
   public void deleteContact() {
+    //wd.findElement(By.xpath("//div[@id='content']/form[2]/div[2]/input")).click();
     click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
+    wd.switchTo().alert().accept();
+
+  }
+
+  public void selectContact() {
+    click(By.name("selected[]"));
   }
 }
