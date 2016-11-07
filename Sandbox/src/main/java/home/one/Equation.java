@@ -1,4 +1,4 @@
-package equa;
+package home.one;
 
 /**
  * Created by ndya on 07.11.2016.
