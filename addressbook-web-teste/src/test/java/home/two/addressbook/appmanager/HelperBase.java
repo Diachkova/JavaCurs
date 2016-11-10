@@ -1,9 +1,6 @@
 package home.two.addressbook.appmanager;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoAlertPresentException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 
 public class HelperBase {
   private WebDriver wd;
@@ -33,15 +30,23 @@ public class HelperBase {
   }
 
   public void popUpClose() {
-    wd.switchTo().alert().accept();
+    boolean alert =  isAlertPresent();
+    if (alert == true) {
+      getAlert().accept();
+    }
   }
+
 
   public boolean isAlertPresent() {
     try {
-      wd.switchTo().alert();
+      getAlert();
       return true;
     } catch (NoAlertPresentException e) {
       return false;
     }
+  }
+
+  private Alert getAlert() {
+    return wd.switchTo().alert();
   }
 }
