@@ -23,8 +23,10 @@ public class HelperBase {
 
   protected void type(By locator, String text) {
     WebElement subject = getElement(locator);
-    subject.clear();
-    subject.sendKeys(text);
+    if (text != null) {
+      subject.clear();
+      subject.sendKeys(text);
+    }
   }
 
   public void popUpClose() {

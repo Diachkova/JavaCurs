@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 
 public class ContactHelper extends HelperBase {
 
-  public ContactHelper(WebDriver wd) {
+  ContactHelper(WebDriver wd) {
     super(wd);
   }
 
