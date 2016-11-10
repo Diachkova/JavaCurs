@@ -24,8 +24,11 @@ public class HelperBase {
   protected void type(By locator, String text) {
     WebElement subject = getElement(locator);
     if (text != null) {
-      subject.clear();
-      subject.sendKeys(text);
+      String existingText = getElement(locator).getAttribute("value");
+        if (! text.equals(existingText)) {
+          subject.clear();
+          subject.sendKeys(text);
+        }
     }
   }
 
