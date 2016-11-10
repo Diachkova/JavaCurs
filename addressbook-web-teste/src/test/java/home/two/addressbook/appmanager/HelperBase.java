@@ -16,7 +16,7 @@ public class HelperBase {
     getElement(locator).click();
   }
 
-  private WebElement getElement(By locator) {
+  protected WebElement getElement(By locator) {
     return wd.findElement(locator);
   }
 

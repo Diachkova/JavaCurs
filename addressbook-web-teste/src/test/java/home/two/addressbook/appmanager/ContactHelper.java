@@ -3,6 +3,7 @@ package home.two.addressbook.appmanager;
 import home.two.addressbook.model.ContactData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class ContactHelper extends HelperBase {
 
@@ -37,6 +38,7 @@ public class ContactHelper extends HelperBase {
 
   public void selectContact() {
     click(By.name("selected[]"));
+
   }
 
   public void clickContactEdit() {

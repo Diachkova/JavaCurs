@@ -1,8 +1,6 @@
 package ff.test;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.testng.annotations.*;
 
 import java.util.concurrent.TimeUnit;
 
@@ -12,7 +10,7 @@ import org.openqa.selenium.*;
 public class GroupCreationTestsFF {
   FirefoxDriver wd;
 
-  @Before
+  @BeforeMethod
   public void setUp() throws Exception {
     System.setProperty("webdriver.gecko.driver", "C:\\Nadia\\driver\\geckodriver-v0.11.1-win64\\geckodriver.exe");
     wd = new FirefoxDriver();
@@ -69,7 +67,7 @@ public class GroupCreationTestsFF {
     wd.findElement(By.linkText("groups")).click();
   }
 
-  @After
+  @AfterMethod
   public void tearDown() {
     wd.quit();
   }
