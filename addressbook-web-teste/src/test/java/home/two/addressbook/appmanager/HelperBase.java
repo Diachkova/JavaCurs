@@ -5,7 +5,7 @@ import org.openqa.selenium.*;
 public class HelperBase {
   private WebDriver wd;
 
-  HelperBase(WebDriver wd) {
+  public HelperBase(WebDriver wd) {
     this.wd = wd;
   }
 
@@ -21,7 +21,7 @@ public class HelperBase {
   protected void type(By locator, String text) {
     WebElement subject = getElement(locator);
     if (text != null) {
-      String existingText = getElement(locator).getAttribute("value");
+      String existingText = subject.getAttribute("value");
         if (! text.equals(existingText)) {
           subject.clear();
           subject.sendKeys(text);
@@ -29,24 +29,30 @@ public class HelperBase {
     }
   }
 
-  public void popUpClose() {
-    boolean alert =  isAlertPresent();
-    if (alert == true) {
-      getAlert().accept();
+  protected boolean isElementPresent(By locator) {
+    try {
+      getElement(locator);
+      return true;
+    } catch (NoSuchElementException ex) {
+      return false;
     }
   }
+
+  public void popUpClose() {
+    wd.switchTo().alert().accept();
+    }
 
 
   public boolean isAlertPresent() {
     try {
-      getAlert();
+      wd.switchTo().alert();
       return true;
     } catch (NoAlertPresentException e) {
       return false;
     }
   }
 
-  private Alert getAlert() {
-    return wd.switchTo().alert();
-  }
+
+
+
 }
