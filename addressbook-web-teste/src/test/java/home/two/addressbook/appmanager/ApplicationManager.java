@@ -16,16 +16,19 @@ public class ApplicationManager {
   private NavigationHelper navigationHelper;
   private GroupHelper groupHelper;
   private SessionHelper sessionHelper;
+  private String browser;
 
+  public ApplicationManager(String browser) {
+    this.browser = browser;
+  }
 
   public void init() {
-    System.setProperty("webdriver.chrome.driver", "C:\\Nadia\\driver\\chromedriver_win32\\chromedriver.exe");
-    System.setProperty("webdriver.gecko.driver", "C:\\Nadia\\driver\\geckodriver-v0.11.1-win64\\geckodriver.exe");
-    System.setProperty("webdriver.ie.driver", "C:\\Nadia\\driver\\IEDriverServer_Win32_2.53.1\\IEDriverServer.exe");
+    //System.setProperty("webdriver.chrome.driver", "C:\\Nadia\\driver\\chromedriver_win32\\chromedriver.exe");
+    //System.setProperty("webdriver.gecko.driver", "C:\\Nadia\\driver\\geckodriver-v0.11.1-win64\\geckodriver.exe");
+    //System.setProperty("webdriver.ie.driver", "C:\\Nadia\\driver\\IEDriverServer_Win32_2.53.1\\IEDriverServer.exe");
     //System.setProperty("webdriver.opera.driver", "C:\\Nadia\\driver\\operadriver_win32\\operadriver.exe");
 
 
-    String browser = BrowserType.FIREFOX;
     if (browser == BrowserType.FIREFOX) {
       wd = new FirefoxDriver();
     } else if  (browser == BrowserType.IE) {
