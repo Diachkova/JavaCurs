@@ -2,12 +2,14 @@ package home.two.addressbook.appmanager;
 
 import home.two.addressbook.model.ContactData;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 public class ContactHelper extends HelperBase {
 
-  ContactHelper(WebDriver wd) {
+  public ContactHelper(WebDriver wd) {
     super(wd);
   }
 
@@ -28,6 +30,10 @@ public class ContactHelper extends HelperBase {
     type(By.name("work"), contactData.getWork());
     type(By.name("fax"), contactData.getFax());
     type(By.name("email"), contactData.getEmail());
+
+    if (isElementPresent(By.name("new_group"))) {
+      new Select(getElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+    }
   }
 
   public void deleteContact() {
@@ -61,3 +67,6 @@ public class ContactHelper extends HelperBase {
   }
 
 }
+
+
+
