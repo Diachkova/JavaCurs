@@ -19,6 +19,7 @@ public class HelperBase {
 
   public boolean isElementPresent(By locator) {
     try {
+      getElement(locator);
       return true;
     } catch (NoSuchElementException ex) {
       return false;
