@@ -3,7 +3,7 @@ package home.two.addressbook.appmanager;
 import org.openqa.selenium.*;
 
 public class HelperBase {
-  private WebDriver wd;
+  protected WebDriver wd;
 
   public HelperBase(WebDriver wd) {
     this.wd = wd;
@@ -29,7 +29,7 @@ public class HelperBase {
     }
   }
 
-  protected boolean isElementPresent(By locator) {
+  public boolean isElementPresent(By locator) {
     try {
       getElement(locator);
       return true;
@@ -37,6 +37,8 @@ public class HelperBase {
       return false;
     }
   }
+
+
 
   public void popUpClose() {
     wd.switchTo().alert().accept();

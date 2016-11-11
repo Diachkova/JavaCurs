@@ -33,6 +33,7 @@ public class ContactHelper extends HelperBase {
 
     if (isElementPresent(By.name("new_group"))) {
       new Select(getElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+
     }
   }
 
