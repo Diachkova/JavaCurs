@@ -39,15 +39,6 @@ public class ContactHelper extends HelperBase {
     }
   }
 
-
-
-      //if (isElementPresent(By.name("new_group"))) {
-      //  new Select(getElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
-
-      // }
-
-
-
   public void deleteContact() {
     click(By.xpath("//div[@id='content']/form[2]//input[@value='Delete']"));
     popUpClose();
@@ -55,7 +46,7 @@ public class ContactHelper extends HelperBase {
   }
 
   public void selectContact() {
-    click(By.name("selected[]"));
+     click(By.name("selected[]"));
 
   }
 
@@ -84,10 +75,10 @@ public class ContactHelper extends HelperBase {
   }
 
   public void clickContactModify() {
-    if (isElementPresent(By.name("modify"))) {
+    if (isElementPresent(By.name("modifiy"))) {
      click (By.name("modifiy"));
-    } else {
-      throw new RuntimeException("Modify button not found");
+   } else {
+    throw new RuntimeException("Modify button not found");
   }
   }
 
