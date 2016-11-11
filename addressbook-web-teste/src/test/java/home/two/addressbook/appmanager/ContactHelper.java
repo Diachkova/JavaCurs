@@ -35,6 +35,7 @@ public class ContactHelper extends HelperBase {
       new Select(getElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
 
     }
+
   }
 
   public void deleteContact() {
@@ -49,17 +50,28 @@ public class ContactHelper extends HelperBase {
   }
 
   public void clickContactEdit() {
-    click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
-
+    if (By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img") == null) {
+      throw new RuntimeException("Update button not found");
+    } else {
+      click (By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
+    //click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
+    }
   }
 
   public void clickContactUpdate() {
+    if (By.xpath("//div[@id='content']/form[1]//input[@value='Update']") == null) {
+      throw new RuntimeException("Update button not found");
+    } else {
     click(By.xpath("//div[@id='content']/form[1]//input[@value='Update']"));
+  }
   }
 
   public void clickContactDetails() {
-    click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[7]/a/img"));
-
+    if (By.xpath("//table[@id='maintable']/tbody/tr[2]/td[7]/a/img") == null) {
+      throw new RuntimeException("Details button not found");
+    } else {
+      click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[7]/a/img"));
+    }
   }
 
   public void clickContactModify() {

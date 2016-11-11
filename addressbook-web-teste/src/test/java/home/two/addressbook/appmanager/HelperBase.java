@@ -17,6 +17,16 @@ public class HelperBase {
     return wd.findElement(locator);
   }
 
+  public boolean isElementPresent(By locator) {
+    try {
+      return true;
+    } catch (NoSuchElementException ex) {
+      return false;
+    }
+  }
+
+
+
 
   protected void type(By locator, String text) {
     WebElement subject = getElement(locator);
@@ -26,15 +36,6 @@ public class HelperBase {
           subject.clear();
           subject.sendKeys(text);
         }
-    }
-  }
-
-  public boolean isElementPresent(By locator) {
-    try {
-      getElement(locator);
-      return true;
-    } catch (NoSuchElementException ex) {
-      return false;
     }
   }
 

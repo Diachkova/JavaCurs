@@ -38,7 +38,6 @@ public class ApplicationManager {
       wd = new ChromeDriver();
     }
 
-    wd.manage().timeouts().implicitlyWait(500, TimeUnit.SECONDS);
     groupHelper = new GroupHelper(wd);
     navigationHelper = new NavigationHelper(wd);
     contactHelper = new ContactHelper(wd);
