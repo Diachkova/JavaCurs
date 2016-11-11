@@ -6,6 +6,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 
 public class ContactHelper extends HelperBase {
 
@@ -17,7 +18,7 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("//div[@id='content']/form/input[@value='Enter']"));
   }
 
-  public void fillContactForm(ContactData contactData) {
+  public void fillContactForm(ContactData contactData, boolean creation) {
     type(By.name("firstname"), contactData.getName());
     type(By.name("middlename"), contactData.getMiddleName());
     type(By.name("lastname"), contactData.getSurname());
@@ -31,12 +32,21 @@ public class ContactHelper extends HelperBase {
     type(By.name("fax"), contactData.getFax());
     type(By.name("email"), contactData.getEmail());
 
-    if (isElementPresent(By.name("new_group"))) {
+    if (creation) {
       new Select(getElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
-
+    } else {
+      Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
-
   }
+
+
+
+      //if (isElementPresent(By.name("new_group"))) {
+      //  new Select(getElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+
+      // }
+
+
 
   public void deleteContact() {
     click(By.xpath("//div[@id='content']/form[2]//input[@value='Delete']"));
@@ -50,33 +60,35 @@ public class ContactHelper extends HelperBase {
   }
 
   public void clickContactEdit() {
-    if (By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img") == null) {
-      throw new RuntimeException("Update button not found");
-    } else {
+    if (isElementPresent(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"))) {
       click (By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
-    //click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
-    }
+    } else {
+      throw new RuntimeException("Edit button not found");
+       }
   }
 
   public void clickContactUpdate() {
-    if (By.xpath("//div[@id='content']/form[1]//input[@value='Update']") == null) {
-      throw new RuntimeException("Update button not found");
+    if (isElementPresent(By.xpath("//div[@id='content']/form[1]//input[@value='Update']"))) {
+      click(By.xpath("//div[@id='content']/form[1]//input[@value='Update']"));
     } else {
-    click(By.xpath("//div[@id='content']/form[1]//input[@value='Update']"));
+      throw new RuntimeException("Update button not found");
   }
   }
 
   public void clickContactDetails() {
-    if (By.xpath("//table[@id='maintable']/tbody/tr[2]/td[7]/a/img") == null) {
-      throw new RuntimeException("Details button not found");
-    } else {
+    if (isElementPresent(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[7]/a/img"))) {
       click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[7]/a/img"));
+    } else {
+      throw new RuntimeException("Details button not found");
     }
   }
 
   public void clickContactModify() {
-    click(By.name("modifiy"));
-
+    if (isElementPresent(By.name("modify"))) {
+     click (By.name("modifiy"));
+    } else {
+      throw new RuntimeException("Modify button not found");
+  }
   }
 
 }

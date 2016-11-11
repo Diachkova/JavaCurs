@@ -27,8 +27,6 @@ public class HelperBase {
   }
 
 
-
-
   protected void type(By locator, String text) {
     WebElement subject = getElement(locator);
     if (text != null) {
