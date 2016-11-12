@@ -12,12 +12,11 @@ public class GroupDeletionTest extends TestBase {
         app.getNavigationHelper().gotoGroupPage();
 
         if (! app.getGroupHelper().isThereAGroup()) {
-            System.out.println(" не нашлась группа");
-
+            //System.out.println(" не нашлась группа");
             app.getGroupHelper().creatGroup(new GroupData("Test1", null, "Test3"));
             app.getNavigationHelper().gotoGroupPage();
-        } else {
-            System.out.println("нашлась группа");
+       // } else {
+         //   System.out.println("нашлась группа");
         }
 
         app.getGroupHelper().selectGroup();

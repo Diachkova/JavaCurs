@@ -46,16 +46,16 @@ public class ContactHelper extends HelperBase {
   }
 
   public void selectContact() {
-     click(By.name("selected[]"));
+    click(By.name("selected[]"));
 
   }
 
   public void clickContactEdit() {
     if (isElementPresent(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"))) {
-      click (By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
+      click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
     } else {
       throw new RuntimeException("Edit button not found");
-       }
+    }
   }
 
   public void clickContactUpdate() {
@@ -63,7 +63,7 @@ public class ContactHelper extends HelperBase {
       click(By.xpath("//div[@id='content']/form[1]//input[@value='Update']"));
     } else {
       throw new RuntimeException("Update button not found");
-  }
+    }
   }
 
   public void clickContactDetails() {
@@ -76,12 +76,20 @@ public class ContactHelper extends HelperBase {
 
   public void clickContactModify() {
     if (isElementPresent(By.name("modifiy"))) {
-     click (By.name("modifiy"));
-   } else {
-    throw new RuntimeException("Modify button not found");
-  }
+      click(By.name("modifiy"));
+    } else {
+      throw new RuntimeException("Modify button not found");
+    }
   }
 
+  public boolean isThereAContact() {
+    return isElementPresent(By.name("selected[]"));
+  }
+
+  public void createContact(ContactData cdata)  {
+    fillContactForm(cdata, true);
+    contentContact();
+}
 }
 
 

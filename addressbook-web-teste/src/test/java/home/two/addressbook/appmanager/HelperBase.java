@@ -41,7 +41,11 @@ public class HelperBase {
 
 
   public void popUpClose() {
-    wd.switchTo().alert().accept();
+    if (isAlertPresent()) {
+      wd.switchTo().alert().accept();
+    } else {
+      throw new RuntimeException ("не появилось окно");
+    }
     }
 
 
