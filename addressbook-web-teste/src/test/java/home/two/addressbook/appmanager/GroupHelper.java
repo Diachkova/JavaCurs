@@ -24,16 +24,29 @@ public class GroupHelper extends HelperBase{
   }
 
   public void createNewGroup() {
+    if (isElementPresent(By.name("new"))) {
     click(By.name("new"));
+  } else {
+    throw new RuntimeException("New button not found");
+  }
   }
 
   public void deleteSelectedGroups() {
-    click(By.name("delete"));
+    if (isElementPresent(By.name("delete"))) {
+      click(By.name("delete"));
+    } else {
+      throw new RuntimeException("Delete button not found");
+    }
   }
 
   public void selectGroup() {
-    click(By.name("selected[]"));
+    if (isElementPresent(By.name("selected[]"))) {
+      click(By.name("selected[]"));
+    } else {
+      throw new RuntimeException("Select button not found");
+    }
   }
+
 
   public void initGroupModification() {
     click(By.name("edit"));
@@ -50,7 +63,14 @@ public class GroupHelper extends HelperBase{
     }
 
   public boolean isThereAGroup() {
+   // if (!isElementPresent(By.tagName("h1"))
+     //       && getElement(By.tagName("h1")).getText().equals("Groups")
+       //     && isElementPresent(By.name("new"))) {
+     // click(By.linkText("groups"));
+    //}
     return isElementPresent(By.name("selected[]"));
   }
+
+
 }
 
