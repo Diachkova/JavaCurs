@@ -1,6 +1,7 @@
 package home.two.addressbook.tests;
 
 import home.two.addressbook.model.ContactData;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class ContactDeletionTest extends TestBase {
@@ -15,9 +16,14 @@ public class ContactDeletionTest extends TestBase {
       app.getNavigationHelper().gotoContactList();
 
     }
+    int before = app.getContactHelper().getContactCount();
+    System.out.println("before " + before);
     app.getContactHelper().selectContact();
     app.getContactHelper().deleteContact();
     app.getNavigationHelper().gotoContactList();
+    int after = app.getContactHelper().getContactCount();
+    System.out.println("after " + after);
+    Assert.assertEquals(after, before - 1);
 
   }
 

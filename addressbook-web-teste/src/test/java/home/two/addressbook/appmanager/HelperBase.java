@@ -67,7 +67,7 @@ public class HelperBase {
   }
 
 
-  protected int getGroupSize(By locator) {
+  protected int getCount(By locator) {
     return wd.findElements(locator).size();
   }
 }

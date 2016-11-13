@@ -2,6 +2,7 @@ package home.two.addressbook.tests;
 
 
 import home.two.addressbook.model.ContactData;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 
@@ -18,11 +19,14 @@ public class ContactModificationTests extends TestBase{
               "Moscow Street House", "terra72@inbox.ru", null, null, "\\9", "\\9", "Test3"));
       app.getNavigationHelper().gotoContactList();
     }
+    int before = app.getContactHelper().getContactCount();
     app.getContactHelper().clickContactEdit();
     app.getContactHelper().fillContactForm(new ContactData("Elena", "Ivanovna", "Petrova", "Sena", "CNN", "5", "Sever",
             null, null, null, null, null, "Test3"), false);
     app.getContactHelper().clickContactUpdate();
     app.getNavigationHelper().gotoContactList();
+    int after = app.getContactHelper().getContactCount();
+    Assert.assertEquals(after, before);
 
   }
 

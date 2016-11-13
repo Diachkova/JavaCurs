@@ -3,9 +3,6 @@ package home.two.addressbook.appmanager;
 import home.two.addressbook.model.GroupData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-
-import java.util.List;
 
 
 public class GroupHelper extends HelperBase{
@@ -76,7 +73,7 @@ public class GroupHelper extends HelperBase{
 
 
   public int getGroupCount() {
-    return getGroupSize(By.name("selected[]"));
+    return getCount(By.name("selected[]"));
   }
 
 }

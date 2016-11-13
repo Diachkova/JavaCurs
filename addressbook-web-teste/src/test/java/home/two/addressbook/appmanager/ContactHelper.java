@@ -89,7 +89,10 @@ public class ContactHelper extends HelperBase {
   public void createContact(ContactData cdata)  {
     fillContactForm(cdata, true);
     contentContact();
-}
+  }
+  public int getContactCount() {
+    return getCount(By.name("selected[]"));
+  }
 }
 
 
