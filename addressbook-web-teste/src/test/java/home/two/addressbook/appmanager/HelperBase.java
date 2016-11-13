@@ -2,6 +2,8 @@ package home.two.addressbook.appmanager;
 
 import org.openqa.selenium.*;
 
+import java.util.List;
+
 public class HelperBase {
   protected WebDriver wd;
 
@@ -16,6 +18,7 @@ public class HelperBase {
   protected WebElement getElement(By locator) {
     return wd.findElement(locator);
   }
+
 
   public boolean isElementPresent(By locator) {
     try {
@@ -59,5 +62,12 @@ public class HelperBase {
   }
 
 
+  protected List<WebElement> getListElements(By locator) {
+    return wd.findElements(locator);
+  }
 
+
+  protected int getGroupSize(By locator) {
+    return wd.findElements(locator).size();
+  }
 }
