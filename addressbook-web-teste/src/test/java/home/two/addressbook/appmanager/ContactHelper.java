@@ -54,9 +54,9 @@ public class ContactHelper extends HelperBase {
 
   }
 
-  public void clickContactEdit() {
-    if (isElementPresent(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"))) {
-      click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
+  public void clickContactEdit(int index) {
+    if (isElementPresent(By.xpath("//table[@id='maintable']/tbody/tr[" + index + "]/td[8]/a/img"))) {
+      click(By.xpath("//table[@id='maintable']/tbody/tr[" + index + "]/td[8]/a/img"));
 
     } else {
       throw new RuntimeException("Edit button not found");
@@ -73,9 +73,9 @@ public class ContactHelper extends HelperBase {
     }
   }
 
-  public void clickContactDetails() {
-    if (isElementPresent(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[7]/a/img"))) {
-      click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[7]/a/img"));
+  public void clickContactDetails(int index) {
+    if (isElementPresent(By.xpath("//table[@id='maintable']/tbody/tr[" + index + "]/td[7]/a/img"))) {
+      click(By.xpath("//table[@id='maintable']/tbody/tr[" + index + "]/td[7]/a/img"));
     } else {
       throw new RuntimeException("Details button not found");
     }

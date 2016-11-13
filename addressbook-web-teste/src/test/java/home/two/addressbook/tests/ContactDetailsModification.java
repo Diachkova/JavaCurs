@@ -22,10 +22,10 @@ public class ContactDetailsModification extends TestBase {
       app.getNavigationHelper().gotoContactList();
     }
     List<ContactData> before = app.getContactHelper().getContactList();
-    app.getContactHelper().selectContact(before.size()-1);
-    app.getContactHelper().clickContactDetails();
+    app.getContactHelper().selectContact(before.size() - 1);
+    app.getContactHelper().clickContactDetails(before.size() + 1);
     app.getContactHelper().clickContactModify();
-    ContactData contact = new ContactData(before.get(before.size()-1).getId(), "Elena", "Ivanovna", "Petrova", "Sena",
+    ContactData contact = new ContactData(before.get(before.size()-1).getId(), "Marina", "Kirillovna", "Semenova", "Rena",
             "CNN", "5", "Sever", null, null, null, null, null, "Test3");
     app.getContactHelper().fillContactForm(contact, false);
     app.getContactHelper().clickContactUpdate();
