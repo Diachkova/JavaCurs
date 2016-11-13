@@ -62,7 +62,8 @@ public class HelperBase {
   }
 
 
-  protected List<WebElement> getListElements(By locator) {
+  protected List<WebElement> getListElements(By locator)
+  {
     return wd.findElements(locator);
   }
 

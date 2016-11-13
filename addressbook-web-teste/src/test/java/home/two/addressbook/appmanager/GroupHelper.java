@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 
-public class GroupHelper extends HelperBase{
+public class GroupHelper extends HelperBase {
 
 
   public GroupHelper(WebDriver wd) {
@@ -25,10 +25,10 @@ public class GroupHelper extends HelperBase{
 
   public void createNewGroup() {
     if (isElementPresent(By.name("new"))) {
-    click(By.name("new"));
-  } else {
-    throw new RuntimeException("New button not found");
-  }
+      click(By.name("new"));
+    } else {
+      throw new RuntimeException("New button not found");
+    }
   }
 
   public void deleteSelectedGroups() {
@@ -39,9 +39,9 @@ public class GroupHelper extends HelperBase{
     }
   }
 
-  public void selectGroup() {
+  public void selectGroup(int index) {
     if (isElementPresent(By.name("selected[]"))) {
-      click(By.name("selected[]"));
+      getListElements(By.name("selected[]")).get(index).click();
     } else {
       throw new RuntimeException("Select button not found");
     }
@@ -60,13 +60,13 @@ public class GroupHelper extends HelperBase{
     createNewGroup();
     fillGroupForm(group);
     submitGroupCreation();
-    }
+  }
 
   public boolean isThereAGroup() {
-   // if (!isElementPresent(By.tagName("h1"))
-     //       && getElement(By.tagName("h1")).getText().equals("Groups")
-       //     && isElementPresent(By.name("new"))) {
-     // click(By.linkText("groups"));
+    // if (!isElementPresent(By.tagName("h1"))
+    //       && getElement(By.tagName("h1")).getText().equals("Groups")
+    //     && isElementPresent(By.name("new"))) {
+    // click(By.linkText("groups"));
     //}
     return isElementPresent(By.name("selected[]"));
   }
