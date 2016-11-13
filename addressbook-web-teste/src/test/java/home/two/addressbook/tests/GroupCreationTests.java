@@ -4,6 +4,8 @@ import home.two.addressbook.model.GroupData;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
 import static org.testng.Assert.*;
 
 public class GroupCreationTests extends TestBase {
@@ -12,13 +14,11 @@ public class GroupCreationTests extends TestBase {
   @Test
   public void testGroupCreation() {
     app.getNavigationHelper().gotoGroupPage();
-    int before = app.getGroupHelper().getGroupCount();
-    System.out.println("before " + before);
+    List<GroupData> before = app.getGroupHelper().getGroupList();
     app.getGroupHelper().creatGroup(new GroupData("Test1", null, "Test3"));
     app.getNavigationHelper().gotoGroupPage();
-    int after = app.getGroupHelper().getGroupCount();
-    System.out.println("after " + after);
-    Assert.assertEquals(after, before + 1);
+    List<GroupData> after = app.getGroupHelper().getGroupList();
+    Assert.assertEquals(after.size(), before.size() + 1);
   }
 
 }
