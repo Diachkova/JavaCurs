@@ -49,8 +49,8 @@ public class ContactHelper extends HelperBase {
 
   }
 
-  public void selectContact(int index) {
-    getListElements(By.name("selected[]")).get(index).click();
+  public void selectContact(int indexc) {
+    getListElements(By.name("selected[]")).get(indexc).click();
 
   }
 
@@ -103,11 +103,19 @@ public class ContactHelper extends HelperBase {
 
   public List<ContactData> getContactList() {
     List<ContactData> contacts = new ArrayList<ContactData>();
-    List<WebElement> elements = getListElements(By.name("selected[]"));
+    List<WebElement> elements = getListElements(By.xpath("//tr[@name='entry']"));
+    System.out.println("elements list size = " + elements.size());
     for (WebElement element : elements) {
-      String name = element.getText();
-      ContactData contact = new ContactData(name, name, name, null, null, null, null, null, null, null, null, null, null);
-      contacts.add(contact);
+      try {
+        String id = element.findElement(By.tagName("input")).getAttribute("value");
+        String surname = element.findElements(By.tagName("td")).get(1).getText();
+        String name = element.findElements(By.tagName("td")).get(2).getText();
+        System.out.println("got contact id=" + id + ", name = " + name + ", surname = " + surname);
+        ContactData contact = new ContactData(id, name, null, surname, null, null, null, null, null, null, null, null, null, null);
+        contacts.add(contact);
+      } catch (NoSuchElementException e) {
+        // do nothing
+      }
     }
     return contacts;
   }

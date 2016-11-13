@@ -4,6 +4,9 @@ import home.two.addressbook.model.ContactData;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.HashSet;
+import java.util.List;
+
 public class ContactDetailsModification extends TestBase {
   //второй способ через кнопку details
 
@@ -18,15 +21,22 @@ public class ContactDetailsModification extends TestBase {
               "Moscow Street House", "terra72@inbox.ru", null, null, "\\9", "\\9", "Test3"));
       app.getNavigationHelper().gotoContactList();
     }
-    int before = app.getContactHelper().getContactCount();
+    List<ContactData> before = app.getContactHelper().getContactList();
+    app.getContactHelper().selectContact(before.size()-1);
     app.getContactHelper().clickContactDetails();
     app.getContactHelper().clickContactModify();
-    app.getContactHelper().fillContactForm(new ContactData("Marina", "Kirillovna", "Gorkina", "Fina", "BaseCamp", "4",
-            "1", "1", "1","1", "2", "3", "Test3"), false);
+    ContactData contact = new ContactData(before.get(before.size()-1).getId(), "Elena", "Ivanovna", "Petrova", "Sena",
+            "CNN", "5", "Sever", null, null, null, null, null, "Test3");
+    app.getContactHelper().fillContactForm(contact, false);
     app.getContactHelper().clickContactUpdate();
     app.getNavigationHelper().gotoContactList();
-    int after = app.getContactHelper().getContactCount();
-    Assert.assertEquals(after, before);
+    List<ContactData> after = app.getContactHelper().getContactList();
+    Assert.assertEquals(after.size(), before.size());
+
+    before.remove(before.size()-1);
+    before.add(contact);
+    Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
+
   }
 
 }

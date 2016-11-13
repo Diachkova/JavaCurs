@@ -1,6 +1,11 @@
 package home.two.addressbook.model;
 
 public class ContactData {
+
+
+
+
+  private final String id;
   private final String name;
   private final String middleName;
   private final String surname;
@@ -13,11 +18,33 @@ public class ContactData {
   private final String work;
   private final String mobile;
   private final String home;
-  private  String group;
+  private String group;
+
+  public String getId() {
+    return id;
+  }
+
+  public ContactData(String id, String name, String middleName, String surname, String nik, String title, String company,
+                     String address, String email, String fax, String work, String mobile, String home, String group) {
+    this.id = id;
+    this.name = name;
+    this.middleName = middleName;
+    this.surname = surname;
+    this.nik = nik;
+    this.title = title;
+    this.company = company;
+    this.address = address;
+    this.email = email;
+    this.fax = fax;
+    this.work = work;
+    this.mobile = mobile;
+    this.home = home;
+    this.group = group;
+  }
 
   public ContactData(String name, String middleName, String surname, String nik, String title, String company,
-                     String address, String email, String fax, String work, String mobile, String home, String group)
-  {
+                     String address, String email, String fax, String work, String mobile, String home, String group) {
+    this.id = null;
     this.name = name;
     this.middleName = middleName;
     this.surname = surname;
@@ -82,14 +109,14 @@ public class ContactData {
   }
 
   public String getGroup() {
-   return group;
+    return group;
   }
 
   @Override
   public String toString() {
     return "ContactData{" +
-            "name='" + name + '\'' +
-            ", middleName='" + middleName + '\'' +
+            "id='" + id + '\'' +
+            ", name='" + name + '\'' +
             ", surname='" + surname + '\'' +
             '}';
   }
@@ -101,16 +128,16 @@ public class ContactData {
 
     ContactData that = (ContactData) o;
 
+    if (id != null ? !id.equals(that.id) : that.id != null) return false;
     if (name != null ? !name.equals(that.name) : that.name != null) return false;
-    if (middleName != null ? !middleName.equals(that.middleName) : that.middleName != null) return false;
     return surname != null ? surname.equals(that.surname) : that.surname == null;
 
   }
 
   @Override
   public int hashCode() {
-    int result = name != null ? name.hashCode() : 0;
-    result = 31 * result + (middleName != null ? middleName.hashCode() : 0);
+    int result = id != null ? id.hashCode() : 0;
+    result = 31 * result + (name != null ? name.hashCode() : 0);
     result = 31 * result + (surname != null ? surname.hashCode() : 0);
     return result;
   }

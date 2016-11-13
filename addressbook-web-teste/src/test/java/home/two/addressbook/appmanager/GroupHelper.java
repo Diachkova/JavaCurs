@@ -83,9 +83,11 @@ public class GroupHelper extends HelperBase {
   public List<GroupData> getGroupList() {
     List<GroupData> groups = new ArrayList<GroupData>();
     List<WebElement> elements = getListElements(By.cssSelector("span.group"));
+    System.out.println("elements list size = " + elements.size());
     for (WebElement element : elements) {
       String name = element.getText();
       String id = element.findElement(By.tagName("input")).getAttribute("value");
+      System.out.println("got contact id=" + id + ", name = " + name);
       GroupData group = new GroupData(id, name, null, null);
       groups.add(group);
     }
