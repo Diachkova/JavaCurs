@@ -84,4 +84,34 @@ public class ContactData {
   public String getGroup() {
    return group;
   }
+
+  @Override
+  public String toString() {
+    return "ContactData{" +
+            "name='" + name + '\'' +
+            ", middleName='" + middleName + '\'' +
+            ", surname='" + surname + '\'' +
+            '}';
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    ContactData that = (ContactData) o;
+
+    if (name != null ? !name.equals(that.name) : that.name != null) return false;
+    if (middleName != null ? !middleName.equals(that.middleName) : that.middleName != null) return false;
+    return surname != null ? surname.equals(that.surname) : that.surname == null;
+
+  }
+
+  @Override
+  public int hashCode() {
+    int result = name != null ? name.hashCode() : 0;
+    result = 31 * result + (middleName != null ? middleName.hashCode() : 0);
+    result = 31 * result + (surname != null ? surname.hashCode() : 0);
+    return result;
+  }
 }

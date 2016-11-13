@@ -1,8 +1,11 @@
 package home.two.addressbook.tests;
 
 import home.two.addressbook.model.ContactData;
+import home.two.addressbook.model.GroupData;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.util.List;
 
 public class ContactDeletionTest extends TestBase {
 
@@ -16,14 +19,15 @@ public class ContactDeletionTest extends TestBase {
       app.getNavigationHelper().gotoContactList();
 
     }
-    int before = app.getContactHelper().getContactCount();
-    System.out.println("before " + before);
-    app.getContactHelper().selectContact(before - 1);
+    List<ContactData> before = app.getContactHelper().getContactList();
+    app.getContactHelper().selectContact(before.size() - 1);
     app.getContactHelper().deleteContact();
     app.getNavigationHelper().gotoContactList();
-    int after = app.getContactHelper().getContactCount();
-    System.out.println("after " + after);
-    Assert.assertEquals(after, before - 1);
+    List<ContactData> after = app.getContactHelper().getContactList();
+    Assert.assertEquals(after.size(), before.size() - 1);
+
+    before.remove(before.size()-1);
+    Assert.assertEquals(before, after);
 
   }
 
