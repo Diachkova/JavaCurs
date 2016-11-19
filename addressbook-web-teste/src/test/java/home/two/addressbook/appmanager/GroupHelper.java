@@ -10,10 +10,12 @@ import java.util.List;
 
 
 public class GroupHelper extends HelperBase {
+  private ApplicationManager app;
 
 
-  public GroupHelper(WebDriver wd) {
+  public GroupHelper(WebDriver wd, ApplicationManager app) {
     super(wd);
+    this.app = app;
   }
 
 
@@ -41,6 +43,7 @@ public class GroupHelper extends HelperBase {
     } else {
       throw new RuntimeException("Delete button not found");
     }
+    app.getNavigationHelper().gotoGroupPage();
   }
 
   public void selectGroup(int index) {
@@ -58,12 +61,14 @@ public class GroupHelper extends HelperBase {
 
   public void submitGroupModification() {
     click(By.name("update"));
+    app.getNavigationHelper().gotoGroupPage();
   }
 
   public void creatGroup(GroupData group) {
     createNewGroup();
     fillGroupForm(group);
     submitGroupCreation();
+    app.getNavigationHelper().gotoGroupPage();
   }
 
   public boolean isThereAGroup() {

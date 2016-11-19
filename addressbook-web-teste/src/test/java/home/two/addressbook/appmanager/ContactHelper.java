@@ -13,9 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ContactHelper extends HelperBase {
+  private ApplicationManager app;
 
-  public ContactHelper(WebDriver wd) {
+  public ContactHelper(WebDriver wd, ApplicationManager app) {
     super(wd);
+    this.app = app;
   }
 
   public void contentContact() {
@@ -46,6 +48,7 @@ public class ContactHelper extends HelperBase {
   public void deleteContact() {
     click(By.xpath("//div[@id='content']/form[2]//input[@value='Delete']"));
     popUpClose();
+    app.getNavigationHelper().gotoContactList();
 
   }
 
@@ -71,6 +74,7 @@ public class ContactHelper extends HelperBase {
     } else {
       throw new RuntimeException("Update button not found");
     }
+    app.getNavigationHelper().gotoContactList();
   }
 
   public void clickContactDetails(int index) {
@@ -94,9 +98,12 @@ public class ContactHelper extends HelperBase {
   }
 
   public void createContact(ContactData cdata)  {
+    app.getNavigationHelper().gotoPageContactCreation();
     fillContactForm(cdata, true);
     contentContact();
+    app.getNavigationHelper().gotoContactList();
   }
+
   public int getContactCount() {
     return getCount(By.name("selected[]"));
   }
