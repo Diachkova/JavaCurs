@@ -114,7 +114,7 @@ public class ContactHelper extends HelperBase {
     System.out.println("elements list size = " + elements.size());
     for (WebElement element : elements) {
       try {
-        String id = element.findElement(By.tagName("input")).getAttribute("value");
+        int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
         String surname = element.findElements(By.tagName("td")).get(1).getText();
         String name = element.findElements(By.tagName("td")).get(2).getText();
         System.out.println("got contact id=" + id + ", name = " + name + ", surname = " + surname);

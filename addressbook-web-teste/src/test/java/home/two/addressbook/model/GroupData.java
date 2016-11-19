@@ -18,7 +18,7 @@ public class GroupData {
     this.groupName = groupName;
     this.header = header;
     this.footer = footer;
-    this.id = 0;
+    this.id = Integer.MAX_VALUE;
   }
 
   public int getId() {
@@ -48,16 +48,13 @@ public class GroupData {
 
     GroupData groupData = (GroupData) o;
 
-    if (id != groupData.id) return false;
     return groupName != null ? groupName.equals(groupData.groupName) : groupData.groupName == null;
 
   }
 
   @Override
   public int hashCode() {
-    int result = id;
-    result = 31 * result + (groupName != null ? groupName.hashCode() : 0);
-    return result;
+    return groupName != null ? groupName.hashCode() : 0;
   }
 
   @Override
