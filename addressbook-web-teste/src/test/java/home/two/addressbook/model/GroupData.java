@@ -1,16 +1,13 @@
 package home.two.addressbook.model;
 
 public class GroupData {
-  private final String id;
+  private int id;
   private final String groupName;
   private final String header;
   private final String footer;
 
-  public String getId() {
-    return id;
-  }
 
-  public GroupData(String id, String groupName, String header, String footer) {
+  public GroupData(int id, String groupName, String header, String footer) {
     this.groupName = groupName;
     this.header = header;
     this.footer = footer;
@@ -21,7 +18,11 @@ public class GroupData {
     this.groupName = groupName;
     this.header = header;
     this.footer = footer;
-    this.id = null;
+    this.id = 0;
+  }
+
+  public int getId() {
+    return id;
   }
 
   public String getGroupName() {
@@ -36,6 +37,10 @@ public class GroupData {
     return footer;
   }
 
+  public void setId(int id) {
+    this.id = id;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -43,14 +48,14 @@ public class GroupData {
 
     GroupData groupData = (GroupData) o;
 
-    if (id != null ? !id.equals(groupData.id) : groupData.id != null) return false;
+    if (id != groupData.id) return false;
     return groupName != null ? groupName.equals(groupData.groupName) : groupData.groupName == null;
 
   }
 
   @Override
   public int hashCode() {
-    int result = id != null ? id.hashCode() : 0;
+    int result = id;
     result = 31 * result + (groupName != null ? groupName.hashCode() : 0);
     return result;
   }
