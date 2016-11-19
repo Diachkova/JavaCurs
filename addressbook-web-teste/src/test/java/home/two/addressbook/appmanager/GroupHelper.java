@@ -92,7 +92,7 @@ public class GroupHelper extends HelperBase {
     for (WebElement element : elements) {
       String name = element.getText();
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      System.out.println("got contact id=" + id + ", name = " + name);
+      System.out.println("got id=" + id + ", name = " + name);
       GroupData group = new GroupData(id, name, null, null);
       groups.add(group);
     }
