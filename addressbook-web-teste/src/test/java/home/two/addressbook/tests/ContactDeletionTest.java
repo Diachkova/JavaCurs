@@ -3,20 +3,24 @@ package home.two.addressbook.tests;
 import home.two.addressbook.model.ContactData;
 import home.two.addressbook.model.GroupData;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.List;
 
 public class ContactDeletionTest extends TestBase {
+  @BeforeMethod
+  public void ensurePrconditions() {
+    app.getNavigationHelper().gotoContactList();
+    if (!app.getContactHelper().isThereAContact()) {
+      System.out.println("нет контакта");
+      app.getContactHelper().createContact(new ContactData("Nadia", "Yurievna", "Diachkova", "Nicki", "\\9", "MyOwn",
+              "Moscow Street House", "terra72@inbox.ru", null, null, "\\9", "\\9", "Test3"));
+    }
+  }
 
   @Test
   public void testContactDeletion() {
-    app.getNavigationHelper().gotoContactList();
-    if (! app.getContactHelper().isThereAContact()) {
-      app.getContactHelper().createContact(new ContactData("Marina", "Kirillovna", "Gorkina", "Fina", "BaseCamp", "4",
-              "1", "1", "1","1", "2", "3", "Test3"));
-
-    }
     List<ContactData> before = app.getContactHelper().getContactList();
     System.out.println("before size = " + before.size());
     app.getContactHelper().selectContact(before.size()-1);

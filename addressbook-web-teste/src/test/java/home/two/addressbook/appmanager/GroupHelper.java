@@ -37,6 +37,14 @@ public class GroupHelper extends HelperBase {
     }
   }
 
+  public void modifyGroup(int index, GroupData group) {
+    selectGroup(index);
+    initGroupModification();
+    fillGroupForm(group);
+    submitGroupModification();
+    app.getNavigationHelper().gotoGroupPage();
+  }
+
   public void deleteSelectedGroups() {
     if (isElementPresent(By.name("delete"))) {
       click(By.name("delete"));
@@ -61,7 +69,7 @@ public class GroupHelper extends HelperBase {
 
   public void submitGroupModification() {
     click(By.name("update"));
-    app.getNavigationHelper().gotoGroupPage();
+
   }
 
   public void creatGroup(GroupData group) {

@@ -20,9 +20,7 @@ public class ContactHelper extends HelperBase {
     this.app = app;
   }
 
-  public void contentContact() {
-    click(By.xpath("//div[@id='content']/form/input[@value='Enter']"));
-  }
+
 
   public void fillContactForm(ContactData contactData, boolean creation) {
     type(By.name("firstname"), contactData.getName());
@@ -43,6 +41,10 @@ public class ContactHelper extends HelperBase {
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
+  }
+
+  public void contentContact() {
+    click(By.xpath("//div[@id='content']/form/input[@value='Enter']"));
   }
 
   public void deleteContact() {
@@ -74,7 +76,6 @@ public class ContactHelper extends HelperBase {
     } else {
       throw new RuntimeException("Update button not found");
     }
-    app.getNavigationHelper().gotoContactList();
   }
 
   public void clickContactDetails(int index) {
@@ -83,6 +84,23 @@ public class ContactHelper extends HelperBase {
     } else {
       throw new RuntimeException("Details button not found");
     }
+  }
+
+  public void modifyDetailsContact(int indexC, int indexB, ContactData contact) {
+    selectContact(indexC);
+    clickContactDetails(indexB);
+    clickContactModify();
+    fillContactForm(contact, false);
+    clickContactUpdate();
+    app.getNavigationHelper().gotoContactList();
+  }
+
+  public void modifyEditContact(ContactData contact, int indexC, int indexB) {
+    selectContact(indexC);
+    clickContactEdit(indexB);
+    fillContactForm(contact, false);
+    clickContactUpdate();
+    app.getNavigationHelper().gotoContactList();
   }
 
   public void clickContactModify() {
@@ -118,7 +136,8 @@ public class ContactHelper extends HelperBase {
         String surname = element.findElements(By.tagName("td")).get(1).getText();
         String name = element.findElements(By.tagName("td")).get(2).getText();
         System.out.println("got contact id=" + id + ", name = " + name + ", surname = " + surname);
-        ContactData contact = new ContactData(id, name, null, surname, null, null, null, null, null, null, null, null, null, null);
+        ContactData contact = new ContactData(id, name, null, surname, null, null, null, null, null, null, null, null,
+                null, null);
         contacts.add(contact);
       } catch (NoSuchElementException e) {
         // do nothing
