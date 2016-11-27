@@ -37,12 +37,12 @@ public class GroupHelper extends HelperBase {
     }
   }
 
-  public void modifyGroup(int index, GroupData group) {
+  public void modify(int index, GroupData group) {
     selectGroup(index);
     initGroupModification();
     fillGroupForm(group);
     submitGroupModification();
-    app.getNavigationHelper().gotoGroupPage();
+    app.goTo().groupPage();
   }
 
   public void deleteSelectedGroups() {
@@ -51,7 +51,6 @@ public class GroupHelper extends HelperBase {
     } else {
       throw new RuntimeException("Delete button not found");
     }
-    app.getNavigationHelper().gotoGroupPage();
   }
 
   public void selectGroup(int index) {
@@ -72,11 +71,17 @@ public class GroupHelper extends HelperBase {
 
   }
 
-  public void creatGroup(GroupData group) {
+  public void create(GroupData group) {
     createNewGroup();
     fillGroupForm(group);
     submitGroupCreation();
-    app.getNavigationHelper().gotoGroupPage();
+    app.goTo().groupPage();
+  }
+
+  public void delete(int index) {
+    selectGroup(index);
+    deleteSelectedGroups();
+    app.goTo().groupPage();
   }
 
   public boolean isThereAGroup() {
@@ -93,7 +98,7 @@ public class GroupHelper extends HelperBase {
     return getCount(By.name("selected[]"));
   }
 
-  public List<GroupData> getGroupList() {
+  public List<GroupData> list() {
     List<GroupData> groups = new ArrayList<GroupData>();
     List<WebElement> elements = getListElements(By.cssSelector("span.group"));
     System.out.println("elements list size = " + elements.size());

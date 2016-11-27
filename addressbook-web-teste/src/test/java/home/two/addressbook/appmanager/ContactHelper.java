@@ -1,7 +1,6 @@
 package home.two.addressbook.appmanager;
 
 import home.two.addressbook.model.ContactData;
-import home.two.addressbook.model.GroupData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -50,8 +49,6 @@ public class ContactHelper extends HelperBase {
   public void deleteContact() {
     click(By.xpath("//div[@id='content']/form[2]//input[@value='Delete']"));
     popUpClose();
-    app.getNavigationHelper().gotoContactList();
-
   }
 
   public void selectContact(int indexc) {
@@ -86,21 +83,21 @@ public class ContactHelper extends HelperBase {
     }
   }
 
-  public void modifyDetailsContact(int indexC, int indexB, ContactData contact) {
+  public void modifyDetails(int indexC, int indexB, ContactData contact) {
     selectContact(indexC);
     clickContactDetails(indexB);
     clickContactModify();
     fillContactForm(contact, false);
     clickContactUpdate();
-    app.getNavigationHelper().gotoContactList();
+    app.goTo().contactPage();
   }
 
-  public void modifyEditContact(ContactData contact, int indexC, int indexB) {
+  public void modifyEdit(ContactData contact, int indexC, int indexB) {
     selectContact(indexC);
     clickContactEdit(indexB);
     fillContactForm(contact, false);
     clickContactUpdate();
-    app.getNavigationHelper().gotoContactList();
+    app.goTo().contactPage();
   }
 
   public void clickContactModify() {
@@ -116,17 +113,23 @@ public class ContactHelper extends HelperBase {
   }
 
   public void createContact(ContactData cdata)  {
-    app.getNavigationHelper().gotoPageContactCreation();
+    app.goTo().gotoPageContactCreation();
     fillContactForm(cdata, true);
     contentContact();
-    app.getNavigationHelper().gotoContactList();
+    app.goTo().contactPage();
+  }
+
+  public void delete(int index) {
+    selectContact(index);
+    deleteContact();
+    app.goTo().contactPage();
   }
 
   public int getContactCount() {
     return getCount(By.name("selected[]"));
   }
 
-  public List<ContactData> getContactList() {
+  public List<ContactData> list() {
     List<ContactData> contacts = new ArrayList<ContactData>();
     List<WebElement> elements = getListElements(By.xpath("//tr[@name='entry']"));
     System.out.println("elements list size = " + elements.size());
