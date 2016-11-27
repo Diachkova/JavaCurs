@@ -27,12 +27,12 @@ public class ContactModificationTests extends TestBase{
   public void testContactModification(){
     Set<ContactData> before = app.contact().allC();
     ContactData modifiedContact = before.iterator().next();
-    int indexB = before.size() + 1;
-    ContactData contact = new ContactData().
-            withId(modifiedContact.getId()).withName("Elena").withMiddleName("Ivanovna").withSurname("Petrova").
-            withNik("Sena").withCompany("BBC").withAddress("7").withHome("South").withGroup("Test3");
-    System.out.println("selecting contact " + (modifiedContact.getId()));
-    app.contact().modifyEdit(modifiedContact, indexB);
+    //int indexB = before.size() + 1;
+    ContactData contact = new ContactData().withId(modifiedContact.getId()).withName("Elena").
+            withMiddleName("Ivanovna").withSurname("Petrova").withNik("Sena").withCompany("BBC").withAddress("7").
+            withHome("South").withGroup("Test1");
+    //System.out.println("selecting contact " + (modifiedContact.getId()));
+    app.contact().modifyEdit(contact);
     Set<ContactData> after = app.contact().allC();
     Assert.assertEquals(after.size(), before.size());
 

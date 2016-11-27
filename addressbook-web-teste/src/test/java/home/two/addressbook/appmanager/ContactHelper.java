@@ -52,26 +52,17 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("//div[@id='content']/form[2]//input[@value='Delete']"));
     popUpClose();
   }
-
-  public void selectContact(int indexc) {
-    getListElements(By.name("selected[]")).get(indexc).click();
-
-  }
+  
 
   public void selectContactById(int id) {
     //getElement(By.xpath("//input[@value='"+id+"']")).click();
     getElement(By.cssSelector("input[value='" + id + "']")).click();
   }
 
-  public void clickContactEdit(int index) {
-    if (isElementPresent(By.xpath("//table[@id='maintable']/tbody/tr[" + index + "]/td[8]/a/img"))) {
-      click(By.xpath("//table[@id='maintable']/tbody/tr[" + index + "]/td[8]/a/img"));
-
-    } else {
-      throw new RuntimeException("Edit button not found");
-
-    }
+  public void clickContactEdit(int id) {
+    getElement(By.xpath("//a[@href='edit.php?id="+id+"']")).click();
   }
+
 
   public void clickContactUpdate() {
     if (isElementPresent(By.xpath("//div[@id='content']/form[1]//input[@value='Update']"))) {
@@ -82,26 +73,26 @@ public class ContactHelper extends HelperBase {
     }
   }
 
-  public void clickContactDetails(int index) {
-    if (isElementPresent(By.xpath("//table[@id='maintable']/tbody/tr[" + index + "]/td[7]/a/img"))) {
-      click(By.xpath("//table[@id='maintable']/tbody/tr[" + index + "]/td[7]/a/img"));
+  public void clickContactDetails(int id) {
+    if (isElementPresent(By.xpath("//a[@href='view.php?id="+id+"']"))) {
+      getElement(By.xpath("//a[@href='view.php?id="+id+"']")).click();
     } else {
       throw new RuntimeException("Details button not found");
     }
   }
 
-  public void modifyDetails(ContactData contact, int indexB) {
+  public void modifyDetails(ContactData contact) {
     selectContactById(contact.getId());
-    clickContactDetails(indexB);
+    clickContactDetails(contact.getId());
     clickContactModify();
     fillContactForm(contact, false);
     clickContactUpdate();
     app.goTo().contactPage();
   }
 
-  public void modifyEdit(ContactData contact, int indexB) {
+  public void modifyEdit(ContactData contact) {
     selectContactById(contact.getId());
-    clickContactEdit(indexB);
+    clickContactEdit(contact.getId());
     fillContactForm(contact, false);
     clickContactUpdate();
     app.goTo().contactPage();
@@ -126,11 +117,6 @@ public class ContactHelper extends HelperBase {
     app.goTo().contactPage();
   }
 
-  public void delete(int index) {
-    selectContact(index);
-    deleteContact();
-    app.goTo().contactPage();
-  }
 
   public void delete(ContactData contact) {
     selectContactById(contact.getId());
@@ -145,23 +131,6 @@ public class ContactHelper extends HelperBase {
 
   public Set<ContactData> allC() {
     Set<ContactData> contacts = new HashSet<ContactData>();
-    List<WebElement> elements = getListElements(By.xpath("//tr[@name='entry']"));
-    System.out.println("elements list size = " + elements.size());
-    for (WebElement element : elements) {
-      try {
-        int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-        String surname = element.findElements(By.tagName("td")).get(1).getText();
-        String name = element.findElements(By.tagName("td")).get(2).getText();
-        System.out.println("got contact id=" + id + ", name = " + name + ", surname = " + surname);
-        contacts.add(new ContactData().withId(id).withName(name).withSurname(surname));
-      } catch (NoSuchElementException e) {
-        // do nothing
-      }
-    }
-    return contacts;
-  }
-  public List<ContactData> list() {
-    List<ContactData> contacts = new ArrayList<>();
     List<WebElement> elements = getListElements(By.xpath("//tr[@name='entry']"));
     System.out.println("elements list size = " + elements.size());
     for (WebElement element : elements) {
