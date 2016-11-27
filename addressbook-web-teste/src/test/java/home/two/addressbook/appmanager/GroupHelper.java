@@ -6,7 +6,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 public class GroupHelper extends HelperBase {
@@ -60,7 +62,9 @@ public class GroupHelper extends HelperBase {
       throw new RuntimeException("Select button not found");
     }
   }
-
+  public void selectGroupByID(int id) {
+    getElement(By.cssSelector("input[name='" + id + "']")).click();
+  }
 
   public void initGroupModification() {
     click(By.name("edit"));
@@ -83,6 +87,14 @@ public class GroupHelper extends HelperBase {
     deleteSelectedGroups();
     app.goTo().groupPage();
   }
+
+  public void delete(GroupData group) {
+    selectGroupByID(group.getId());
+    deleteSelectedGroups();
+    app.goTo().groupPage();
+  }
+
+
 
   public boolean isThereAGroup() {
     // if (!isElementPresent(By.tagName("h1"))
@@ -110,5 +122,20 @@ public class GroupHelper extends HelperBase {
     }
     return groups;
   }
+
+  public Set<GroupData> all() {
+    Set<GroupData> groups = new HashSet<GroupData>();
+    List<WebElement> elements = getListElements(By.cssSelector("span.group"));
+    System.out.println("elements list size = " + elements.size());
+    for (WebElement element : elements) {
+      String name = element.getText();
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      System.out.println("got id=" + id + ", name = " + name);
+      groups.add(new GroupData().withId(id).withGroupName(name));
+    }
+    return groups;
+  }
+
+
 }
 

@@ -9,7 +9,9 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ContactHelper extends HelperBase {
   private ApplicationManager app;
@@ -54,6 +56,12 @@ public class ContactHelper extends HelperBase {
   public void selectContact(int indexc) {
     getListElements(By.name("selected[]")).get(indexc).click();
 
+  }
+
+  public void selectContactById(int id) {
+   // By.tagName("input")).getAttribute("value");
+    //getElement(By.cssSelector("input[name='" + id + "']")).click();
+    getElement(By.tagName("input[value='" + id +"']")).click();
   }
 
   public void clickContactEdit(int index) {
@@ -125,12 +133,19 @@ public class ContactHelper extends HelperBase {
     app.goTo().contactPage();
   }
 
+  public void delete(ContactData contact) {
+    selectContactById(contact.getId());
+    deleteContact();
+    app.goTo().contactPage();
+
+  }
+
   public int getContactCount() {
     return getCount(By.name("selected[]"));
   }
 
-  public List<ContactData> list() {
-    List<ContactData> contacts = new ArrayList<ContactData>();
+  public Set<ContactData> allC() {
+    Set<ContactData> contacts = new HashSet<ContactData>();
     List<WebElement> elements = getListElements(By.xpath("//tr[@name='entry']"));
     System.out.println("elements list size = " + elements.size());
     for (WebElement element : elements) {
@@ -146,7 +161,27 @@ public class ContactHelper extends HelperBase {
     }
     return contacts;
   }
+  public List<ContactData> list() {
+    List<ContactData> contacts = new ArrayList<>();
+    List<WebElement> elements = getListElements(By.xpath("//tr[@name='entry']"));
+    System.out.println("elements list size = " + elements.size());
+    for (WebElement element : elements) {
+      try {
+        int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+        String surname = element.findElements(By.tagName("td")).get(1).getText();
+        String name = element.findElements(By.tagName("td")).get(2).getText();
+        System.out.println("got contact id=" + id + ", name = " + name + ", surname = " + surname);
+        contacts.add(new ContactData().withId(id).withName(name).withSurname(surname));
+      } catch (NoSuchElementException e) {
+        // do nothing
+      }
+    }
+    return contacts;
+  }
+
+
 }
+
 
 
 
