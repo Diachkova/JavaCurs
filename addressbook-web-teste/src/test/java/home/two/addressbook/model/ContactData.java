@@ -2,60 +2,92 @@ package home.two.addressbook.model;
 
 public class ContactData {
 
-  private int id;
-  private final String name;
-  private final String middleName;
-  private final String surname;
-  private final String nik;
-  private final String title;
-  private final String company;
-  private final String address;
-  private final String email;
-  private final String fax;
-  private final String work;
-  private final String mobile;
-  private final String home;
+  private int id = Integer.MAX_VALUE;;
+  private String name;
+  private String middleName;
+  private String surname;
+  private String nik;
+  private String title;
+  private String company;
+  private String address;
+  private String email;
+  private String fax;
+  private String work;
+  private String mobile;
+  private String home;
   private String group;
 
 
-  public ContactData(int id, String name, String middleName, String surname, String nik, String title, String company,
-                     String address, String email, String fax, String work, String mobile, String home, String group) {
+  public ContactData withId(int id) {
     this.id = id;
-    this.name = name;
-    this.middleName = middleName;
-    this.surname = surname;
-    this.nik = nik;
-    this.title = title;
-    this.company = company;
-    this.address = address;
-    this.email = email;
-    this.fax = fax;
-    this.work = work;
-    this.mobile = mobile;
-    this.home = home;
-    this.group = group;
+    return this;
   }
 
-  public ContactData(String name, String middleName, String surname, String nik, String title, String company,
-                     String address, String email, String fax, String work, String mobile, String home, String group) {
-    this.id = Integer.MAX_VALUE;
+  public ContactData withName(String name) {
     this.name = name;
+    return this;
+  }
+
+  public ContactData withMiddleName(String middleName) {
     this.middleName = middleName;
+    return this;
+  }
+
+  public ContactData withSurname(String surname) {
     this.surname = surname;
+    return this;
+  }
+
+  public ContactData withNik(String nik) {
     this.nik = nik;
+    return this;
+  }
+
+  public ContactData withTitle(String title) {
     this.title = title;
+    return this;
+  }
+
+  public ContactData withCompany(String company) {
     this.company = company;
+    return this;
+  }
+
+  public ContactData withAddress(String address) {
     this.address = address;
+    return this;
+  }
+
+  public ContactData withEmail(String email) {
     this.email = email;
+    return this;
+  }
+
+  public ContactData withFax(String fax) {
     this.fax = fax;
+    return this;
+  }
+
+  public ContactData withWork(String work) {
     this.work = work;
+    return this;
+  }
+
+  public ContactData withMobile(String mobile) {
     this.mobile = mobile;
+    return this;
+  }
+
+  public ContactData withHome(String home) {
     this.home = home;
+    return this;
+  }
+
+  public ContactData withGroup(String group) {
     this.group = group;
+    return this;
   }
-  public void setId(int id) {
-    this.id = id;
-  }
+
 
   public int getId() {
     return id;

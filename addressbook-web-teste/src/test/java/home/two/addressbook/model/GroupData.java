@@ -42,9 +42,6 @@ public class GroupData {
     return footer;
   }
 
-  public void setId(int id) {
-    this.id = id;
-  }
 
   @Override
   public boolean equals(Object o) {

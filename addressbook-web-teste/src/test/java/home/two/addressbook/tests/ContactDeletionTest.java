@@ -13,8 +13,9 @@ public class ContactDeletionTest extends TestBase {
     app.goTo().contactPage();
     if (app.contact().list().size() == 0) {
       System.out.println("нет контакта");
-      app.contact().createContact(new ContactData("Nadia", "Yurievna", "Diachkova", "Nicki", "\\9", "MyOwn",
-              "Moscow Street House", "terra72@inbox.ru", null, null, "\\9", "\\9", "Test3"));
+      app.contact().createContact(new ContactData().withName("Nadia").withMiddleName("Yurievna").
+              withSurname("Diachkova").withNik("Nicki").withAddress("MyOwn").
+              withHome("Moscow Street House").withEmail("terra72@inbox.ru").withGroup("Test3"));
     }
   }
 

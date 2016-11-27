@@ -139,9 +139,7 @@ public class ContactHelper extends HelperBase {
         String surname = element.findElements(By.tagName("td")).get(1).getText();
         String name = element.findElements(By.tagName("td")).get(2).getText();
         System.out.println("got contact id=" + id + ", name = " + name + ", surname = " + surname);
-        ContactData contact = new ContactData(id, name, null, surname, null, null, null, null, null, null, null, null,
-                null, null);
-        contacts.add(contact);
+        contacts.add(new ContactData().withId(id).withName(name).withSurname(surname));
       } catch (NoSuchElementException e) {
         // do nothing
       }
