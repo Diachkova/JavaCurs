@@ -22,7 +22,7 @@ public class GroupDeletionTest extends TestBase {
         Set<GroupData> before = app.group().all();
         GroupData deletedGroup = before.iterator().next();
         app.group().delete(deletedGroup);
-        List<GroupData> after = app.group().list();
+        Set<GroupData> after = app.group().all();
 
         Assert.assertEquals(after.size(), before.size() - 1);
         before.remove(deletedGroup);

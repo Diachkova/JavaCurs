@@ -59,9 +59,8 @@ public class ContactHelper extends HelperBase {
   }
 
   public void selectContactById(int id) {
-   // By.tagName("input")).getAttribute("value");
-    //getElement(By.cssSelector("input[name='" + id + "']")).click();
-    getElement(By.tagName("input[value='" + id +"']")).click();
+    //getElement(By.xpath("//input[@value='"+id+"']")).click();
+    getElement(By.cssSelector("input[value='" + id + "']")).click();
   }
 
   public void clickContactEdit(int index) {
