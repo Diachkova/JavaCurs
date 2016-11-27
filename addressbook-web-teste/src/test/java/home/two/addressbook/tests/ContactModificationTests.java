@@ -8,46 +8,40 @@ import org.testng.annotations.Test;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 
 
 public class ContactModificationTests extends TestBase{
   @BeforeMethod
-  public void ensurePrconditions() {
+  public void ensurePreconditions() {
     app.goTo().contactPage();
-    if (app.contact().list().size() == 0) {
+    if (app.contact().allC().size() == 0) {
       System.out.println("нет контакта");
-      ContactData contact = new ContactData().withName("Nadia").withMiddleName("Yurievna").
+      app.contact().createContact(new ContactData().withName("Nadia").withMiddleName("Yurievna").
               withSurname("Diachkova").withNik("Nicki").withAddress("MyOwn").
-              withHome("Moscow Street House").withEmail("terra72@inbox.ru").withGroup("Test3");
+              withHome("Moscow Street House").withEmail("terra72@inbox.ru").withGroup("Test1"));
     }
   }
 
   @Test
   public void testContactModification(){
-    List<ContactData> before = app.contact().list();
-    int indexC = before.size() - 1;
+    Set<ContactData> before = app.contact().allC();
+    ContactData modifiedContact = before.iterator().next();
     int indexB = before.size() + 1;
     ContactData contact = new ContactData().
-            withId(before.get(indexC).getId()).withName("Elena").withMiddleName("Ivanovna").withSurname("Petrova").
+            withId(modifiedContact.getId()).withName("Elena").withMiddleName("Ivanovna").withSurname("Petrova").
             withNik("Sena").withCompany("BBC").withAddress("7").withHome("South").withGroup("Test3");
-    System.out.println("selecting contact " + (indexC));
-    app.contact().modifyEdit(contact, indexC, indexB);
-    List<ContactData> after = app.contact().list();
+    System.out.println("selecting contact " + (modifiedContact.getId()));
+    app.contact().modifyEdit(modifiedContact, indexB);
+    Set<ContactData> after = app.contact().allC();
     Assert.assertEquals(after.size(), before.size());
 
-    before.remove(indexC);
+    before.remove(modifiedContact);
     before.add(contact);
-
     System.out.println("before " + before);
     System.out.println("after " + after);
-
-    Comparator<? super ContactData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
-    before.sort(byId);
-    after.sort(byId);
     Assert.assertEquals(before, after);
 
   }
-
-
 
 }

@@ -5,14 +5,13 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.List;
 import java.util.Set;
 
 public class GroupDeletionTest extends TestBase {
     @BeforeMethod
     public void ensurePrconditions() {
         app.goTo().groupPage();
-        if (app.group().list().size() == 0) {
+        if (app.group().all().size() == 0) {
             app.group().create(new GroupData().withGroupName("Test1"));
         }
     }

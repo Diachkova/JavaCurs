@@ -10,7 +10,7 @@ import java.util.Set;
 
 public class ContactDeletionTest extends TestBase {
   @BeforeMethod
-  public void ensurePrconditions() {
+  public void ensurePreconditions() {
     app.goTo().contactPage();
     if (app.contact().list().size() == 0) {
       System.out.println("нет контакта");

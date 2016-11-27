@@ -90,8 +90,8 @@ public class ContactHelper extends HelperBase {
     }
   }
 
-  public void modifyDetails(int indexC, int indexB, ContactData contact) {
-    selectContact(indexC);
+  public void modifyDetails(ContactData contact, int indexB) {
+    selectContactById(contact.getId());
     clickContactDetails(indexB);
     clickContactModify();
     fillContactForm(contact, false);
@@ -99,8 +99,8 @@ public class ContactHelper extends HelperBase {
     app.goTo().contactPage();
   }
 
-  public void modifyEdit(ContactData contact, int indexC, int indexB) {
-    selectContact(indexC);
+  public void modifyEdit(ContactData contact, int indexB) {
+    selectContactById(contact.getId());
     clickContactEdit(indexB);
     fillContactForm(contact, false);
     clickContactUpdate();

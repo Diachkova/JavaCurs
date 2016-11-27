@@ -5,7 +5,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -39,8 +38,8 @@ public class GroupHelper extends HelperBase {
     }
   }
 
-  public void modify(int index, GroupData group) {
-    selectGroup(index);
+  public void modify(GroupData group) {
+    selectGroupByID(group.getId());
     initGroupModification();
     fillGroupForm(group);
     submitGroupModification();
@@ -55,13 +54,7 @@ public class GroupHelper extends HelperBase {
     }
   }
 
-  public void selectGroup(int index) {
-    if (isElementPresent(By.name("selected[]"))) {
-      getListElements(By.name("selected[]")).get(index).click();
-    } else {
-      throw new RuntimeException("Select button not found");
-    }
-  }
+
   public void selectGroupByID(int id) {
     getElement(By.cssSelector("input[value='" + id + "']")).click();
   }
@@ -82,11 +75,6 @@ public class GroupHelper extends HelperBase {
     app.goTo().groupPage();
   }
 
-  public void delete(int index) {
-    selectGroup(index);
-    deleteSelectedGroups();
-    app.goTo().groupPage();
-  }
 
   public void delete(GroupData group) {
     selectGroupByID(group.getId());
@@ -110,18 +98,6 @@ public class GroupHelper extends HelperBase {
     return getCount(By.name("selected[]"));
   }
 
-  public List<GroupData> list() {
-    List<GroupData> groups = new ArrayList<GroupData>();
-    List<WebElement> elements = getListElements(By.cssSelector("span.group"));
-    System.out.println("elements list size = " + elements.size());
-    for (WebElement element : elements) {
-      String name = element.getText();
-      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      System.out.println("got id=" + id + ", name = " + name);
-      groups.add(new GroupData().withId(id).withGroupName(name));
-    }
-    return groups;
-  }
 
   public Set<GroupData> all() {
     Set<GroupData> groups = new HashSet<GroupData>();
