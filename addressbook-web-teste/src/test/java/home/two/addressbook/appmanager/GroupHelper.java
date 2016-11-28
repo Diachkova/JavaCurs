@@ -1,6 +1,7 @@
 package home.two.addressbook.appmanager;
 
 import home.two.addressbook.model.GroupData;
+import home.two.addressbook.model.Groups;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -100,7 +101,7 @@ public class GroupHelper extends HelperBase {
 
 
   public Set<GroupData> all() {
-    Set<GroupData> groups = new HashSet<GroupData>();
+    Groups groups = new Groups();
     List<WebElement> elements = getListElements(By.cssSelector("span.group"));
     System.out.println("elements list size = " + elements.size());
     for (WebElement element : elements) {
