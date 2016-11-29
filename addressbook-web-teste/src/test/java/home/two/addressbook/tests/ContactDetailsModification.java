@@ -1,14 +1,12 @@
 package home.two.addressbook.tests;
 
 import home.two.addressbook.model.ContactData;
-import org.testng.Assert;
+import home.two.addressbook.model.Contacts;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactDetailsModification extends TestBase {
   //второй способ через кнопку details
@@ -26,18 +24,18 @@ public class ContactDetailsModification extends TestBase {
 
   @Test
   public void testDetailsModification() {
-    Set<ContactData> before = app.contact().allC();
+    Contacts before = app.contact().allC();
     ContactData modifiedContact = before.iterator().next();
     ContactData contact = new ContactData().
             withId(modifiedContact.getId()).withName("Marina").withMiddleName("Kirillovna").withSurname("Semenova").
             withNik("Rena").withCompany("CNN").withAddress("5").withHome("Sever").withGroup("Test3");
     app.contact().modifyDetails(contact);
-    Set<ContactData> after = app.contact().allC();
-    Assert.assertEquals(after.size(), before.size());
+    Contacts after = app.contact().allC();
+    assertThat(after.size(), equalTo(before.size()));
 
-    before.remove(modifiedContact);
-    before.add(contact);
-    Assert.assertEquals(before, after);
+    System.out.println("before " + before);
+    System.out.println("after " + after);
+    assertThat(after, equalTo(before.without(modifiedContact).withCAdded(contact)));
 
   }
 
