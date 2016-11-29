@@ -1,17 +1,14 @@
 package home.two.addressbook.appmanager;
 
 import home.two.addressbook.model.ContactData;
+import home.two.addressbook.model.Contacts;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class ContactHelper extends HelperBase {
   private ApplicationManager app;
@@ -129,20 +126,20 @@ public class ContactHelper extends HelperBase {
     return getCount(By.name("selected[]"));
   }
 
-  public Set<ContactData> allC() {
-    Set<ContactData> contacts = new HashSet<ContactData>();
+  public Contacts allC() {
+    Contacts contacts = new Contacts();
     List<WebElement> elements = getListElements(By.xpath("//tr[@name='entry']"));
     System.out.println("elements list size = " + elements.size());
     for (WebElement element : elements) {
-      try {
-        int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      //try {
         String surname = element.findElements(By.tagName("td")).get(1).getText();
         String name = element.findElements(By.tagName("td")).get(2).getText();
+        int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
         System.out.println("got contact id=" + id + ", name = " + name + ", surname = " + surname);
         contacts.add(new ContactData().withId(id).withName(name).withSurname(surname));
-      } catch (NoSuchElementException e) {
+      //} catch (NoSuchElementException e) {
         // do nothing
-      }
+      //}
     }
     return contacts;
   }

@@ -161,6 +161,7 @@ public class ContactData {
 
     ContactData that = (ContactData) o;
 
+    if (id != that.id) return false;
     if (name != null ? !name.equals(that.name) : that.name != null) return false;
     return surname != null ? surname.equals(that.surname) : that.surname == null;
 
@@ -168,7 +169,8 @@ public class ContactData {
 
   @Override
   public int hashCode() {
-    int result = name != null ? name.hashCode() : 0;
+    int result = id;
+    result = 31 * result + (name != null ? name.hashCode() : 0);
     result = 31 * result + (surname != null ? surname.hashCode() : 0);
     return result;
   }
