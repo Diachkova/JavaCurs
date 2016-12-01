@@ -84,6 +84,7 @@ public class ContactHelper extends HelperBase {
     clickContactModify();
     fillContactForm(contact, false);
     clickContactUpdate();
+    contactCache = null;
     app.goTo().contactPage();
   }
 
@@ -92,6 +93,7 @@ public class ContactHelper extends HelperBase {
     clickContactEdit(contact.getId());
     fillContactForm(contact, false);
     clickContactUpdate();
+    contactCache = null;
     app.goTo().contactPage();
   }
 
@@ -111,6 +113,7 @@ public class ContactHelper extends HelperBase {
     app.goTo().gotoPageContactCreation();
     fillContactForm(cdata, true);
     contentContact();
+    contactCache = null;
     app.goTo().contactPage();
   }
 
@@ -118,16 +121,24 @@ public class ContactHelper extends HelperBase {
   public void delete(ContactData contact) {
     selectContactById(contact.getId());
     deleteContact();
+    contactCache = null;
     app.goTo().contactPage();
 
   }
 
-  public int getContactCount() {
+  public int count() {
     return getCount(By.name("selected[]"));
   }
 
+  private Contacts contactCache = null;
+
+
   public Contacts allC() {
-    Contacts contacts = new Contacts();
+      if (contactCache !=null) {
+        return new Contacts(contactCache);
+      }
+
+    contactCache = new Contacts();
     List<WebElement> elements = getListElements(By.xpath("//tr[@name='entry']"));
     System.out.println("elements list size = " + elements.size());
     for (WebElement element : elements) {
@@ -136,12 +147,12 @@ public class ContactHelper extends HelperBase {
         String name = element.findElements(By.tagName("td")).get(2).getText();
         int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
         System.out.println("got contact id=" + id + ", name = " + name + ", surname = " + surname);
-        contacts.add(new ContactData().withId(id).withName(name).withSurname(surname));
+        contactCache.add(new ContactData().withId(id).withName(name).withSurname(surname));
       //} catch (NoSuchElementException e) {
         // do nothing
       //}
     }
-    return contacts;
+    return new Contacts(contactCache);
   }
 
 

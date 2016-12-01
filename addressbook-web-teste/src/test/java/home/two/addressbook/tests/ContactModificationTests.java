@@ -32,8 +32,8 @@ public class ContactModificationTests extends TestBase{
             withHome("South").withGroup("Test1");
     //System.out.println("selecting contact " + (modifiedContact.getId()));
     app.contact().modifyEdit(contact);
+    assertThat(app.contact().count(), equalTo(before.size()));
     Contacts after = app.contact().allC();
-    assertThat(after.size(), equalTo(before.size()));
 
     System.out.println("before " + before);
     System.out.println("after " + after);
