@@ -31,17 +31,15 @@ public class ContactAddressTests extends TestBase {
     ContactData contact = app.contact().allC().iterator().next();
     ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
 
-    //assertThat(contact.getAllAddress(), equalTo(ddress(contactInfoFromEditForm)));
+    assertThat(contact.getAllAddress(), equalTo(mergeAddress(contactInfoFromEditForm)));
   }
 
-  //private String  mergeAddress(ContactData contact) {
-//    return Arrays.asList(contact.getAddress().stream().filter((s) -> ! s.equals("")).
-  //          map(ContactPhoneTests::cleaned).collect(Collectors.joining("\n"));
- // }
+  private String  mergeAddress(ContactData contact) {
+    //System.out.println("address "+ contact.getAddress());
+   return Arrays.asList(contact.getAddress()).stream().filter((s) -> ! s.equals("")).
+            collect(Collectors.joining("\n"));
+  }
 
- // public static String cleaned(String address) {
-  //  return address.replaceAll("\\s","").replaceAll("[-()]","");
-  //}
 }
 
 

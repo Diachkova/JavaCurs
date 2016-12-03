@@ -140,15 +140,13 @@ public class ContactHelper extends HelperBase {
 
     contactCache = new Contacts();
     List<WebElement> elements = getListElements(By.xpath("//tr[@name='entry']"));
-    System.out.println("elements list size = " + elements.size());
+    //System.out.println("elements list size = " + elements.size());
     for (WebElement element : elements) {
       //try {
         String surname = element.findElements(By.tagName("td")).get(1).getText();
         String name = element.findElements(By.tagName("td")).get(2).getText();
         int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-        System.out.println("got contact id=" + id + ", name = " + name + ", surname = " + surname);
-        System.out.println("trying to get phones from " + element.findElements(By.tagName("td")).get(5).getText());
-
+        //System.out.println("got contact id=" + id + ", name = " + name + ", surname = " + surname);
         String allPhones = element.findElements(By.tagName("td")).get(5).getText();
         String allAddress = element.findElements(By.tagName("td")).get(3).getText();
         String allEmail = element.findElements(By.tagName("td")).get(4).getText();
