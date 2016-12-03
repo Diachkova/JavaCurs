@@ -147,7 +147,11 @@ public class ContactHelper extends HelperBase {
         String name = element.findElements(By.tagName("td")).get(2).getText();
         int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
         System.out.println("got contact id=" + id + ", name = " + name + ", surname = " + surname);
-        contactCache.add(new ContactData().withId(id).withName(name).withSurname(surname));
+
+        System.out.println("trying to get phones from " + element.findElements(By.tagName("td")).get(5).getText());
+        String[] phones = element.findElements(By.tagName("td")).get(5).getText().split("\\n");
+        contactCache.add(new ContactData().withId(id)
+                .withName(name).withSurname(surname).withHome(phones[0]).withMobile(phones[1]).withWork(phones[2]));
       //} catch (NoSuchElementException e) {
         // do nothing
       //}
@@ -157,7 +161,7 @@ public class ContactHelper extends HelperBase {
 
 
   public ContactData infoFromEditForm(ContactData contact) {
- initContactModificatonById(contact.getId());
+  initContactModificatonById(contact.getId());
   String surname = getElement(By.name("lastname")).getAttribute("value");
   String firstname = getElement(By.name("firstname")).getAttribute("value");
   String home = getElement(By.name("home")).getAttribute("value");
