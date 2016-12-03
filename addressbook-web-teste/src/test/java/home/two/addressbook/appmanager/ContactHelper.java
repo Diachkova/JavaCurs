@@ -148,9 +148,14 @@ public class ContactHelper extends HelperBase {
         int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
         System.out.println("got contact id=" + id + ", name = " + name + ", surname = " + surname);
         System.out.println("trying to get phones from " + element.findElements(By.tagName("td")).get(5).getText());
+
         String allPhones = element.findElements(By.tagName("td")).get(5).getText();
+        String allAddress = element.findElements(By.tagName("td")).get(3).getText();
+        String allEmail = element.findElements(By.tagName("td")).get(4).getText();
+        System.out.println("got all email=" + allEmail + ", allAddress = " + allAddress);
         contactCache.add(new ContactData().withId(id)
-                .withName(name).withSurname(surname).withAllPhones(allPhones));
+                .withName(name).withSurname(surname).withAllPhones(allPhones).
+                withAllAddress(allAddress).withAllEmail(allEmail));
       //} catch (NoSuchElementException e) {
         // do nothing
       //}
@@ -166,9 +171,15 @@ public class ContactHelper extends HelperBase {
   String home = getElement(By.name("home")).getAttribute("value");
   String mobile = getElement(By.name("mobile")).getAttribute("value");
   String work = getElement(By.name("work")).getAttribute("value");
+  String address = getElement(By.name("address")).getAttribute("value");
+  String email = getElement(By.name("email")).getAttribute("value");
+  String email2 = getElement(By.name("email2")).getAttribute("value");
+  String email3 = getElement(By.name("email3")).getAttribute("value");
+
   wd.navigate().back();
   return  new ContactData().withId(contact.getId()).withSurname(surname).withName(firstname).
-          withMobile(mobile).withHome(home).withWork(work);
+          withMobile(mobile).withHome(home).withWork(work).withAddress(address).withEmail(email).
+          withEmail2(email2).withEmail3(email3);
   }
 
   private void initContactModificatonById(int id) {
