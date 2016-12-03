@@ -156,6 +156,23 @@ public class ContactHelper extends HelperBase {
   }
 
 
+  public ContactData infoFromEditForm(ContactData contact) {
+ initContactModificatonById(contact.getId());
+  String surname = getElement(By.name("lastname")).getAttribute("value");
+  String firstname = getElement(By.name("firstname")).getAttribute("value");
+  String home = getElement(By.name("home")).getAttribute("value");
+  String mobile = getElement(By.name("mobile")).getAttribute("value");
+  String work = getElement(By.name("work")).getAttribute("value");
+  wd.navigate().back();
+  return  new ContactData().withId(contact.getId()).withSurname(surname).withName(firstname).
+          withMobile(mobile).withHome(home).withWork(work);
+  }
+
+  private void initContactModificatonById(int id) {
+    getElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
+  }
+
+
 }
 
 
