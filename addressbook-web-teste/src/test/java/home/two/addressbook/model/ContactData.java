@@ -15,6 +15,17 @@ public class ContactData {
   private String work;
   private String mobile;
   private String home;
+
+  public String getAllPhones() {
+    return allPhones;
+  }
+
+  public ContactData withAllPhones(String allPhones) {
+    this.allPhones = allPhones;
+    return this;
+  }
+
+  private String allPhones;
   private String group;
 
 

@@ -147,11 +147,10 @@ public class ContactHelper extends HelperBase {
         String name = element.findElements(By.tagName("td")).get(2).getText();
         int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
         System.out.println("got contact id=" + id + ", name = " + name + ", surname = " + surname);
-
         System.out.println("trying to get phones from " + element.findElements(By.tagName("td")).get(5).getText());
-        String[] phones = element.findElements(By.tagName("td")).get(5).getText().split("\\n");
+        String allPhones = element.findElements(By.tagName("td")).get(5).getText();
         contactCache.add(new ContactData().withId(id)
-                .withName(name).withSurname(surname).withHome(phones[0]).withMobile(phones[1]).withWork(phones[2]));
+                .withName(name).withSurname(surname).withAllPhones(allPhones));
       //} catch (NoSuchElementException e) {
         // do nothing
       //}
