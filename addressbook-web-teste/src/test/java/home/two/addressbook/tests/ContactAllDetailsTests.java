@@ -18,30 +18,43 @@ public class ContactAllDetailsTests extends TestBase {
     app.goTo().contactPage();
     if (app.contact().allC().size() == 0) {
       System.out.println("нет контакта");
-      app.contact().createContact(new ContactData().withName("Nadia").withMiddleName("Yurievna").
-              withSurname("Diachkova").withNik("Nicki").withAddress("MyOwn").
-              withHome("333").withEmail("terra72@inbox.ru").withGroup("Test3"));
+      app.contact().createContact(new ContactData().withName("Nadia").
+              withSurname("Diachkova").withHome("333").withEmail("terra72@inbox.ru"));
     }
   }
 
   @Test
   public void testAllDetails() {
     ContactData contact = app.contact().allC().iterator().next();
-    ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
+    ContactData contactInfoFromDetailsForm = app.contact().infoFromDetailsForm(contact);
+    ContactData contactEditDetailsForm = app.contact().infoEditDetailsForm(contact);
 
-    assertThat(contact.getAllEmail(), equalTo(mergeEmails(contactInfoFromEditForm)));
-  }
-
-  private String mergeEmails(ContactData contact) {
-
-    return Arrays.asList(contact.getEmail(), contact.getEmail2(),
-            contact.getEmail3()).stream().filter((s) -> !s.equals("")).
-            collect(Collectors.joining("\n"));
+    //assertThat(contactInfoFromDetailsForm.getAllData(), equalTo(mergeEditData(contactEditDetailsForm)));
+    assertThat(mergeDetailsData(contactInfoFromDetailsForm), equalTo(mergeEditData(contactEditDetailsForm)));
 
   }
 
-  public static String cleaned(String phone) {
-    return phone.replaceAll("\\s", "").replaceAll("[-()]", "");
+  private String mergeEditData(ContactData contact) {
+    System.out.println("getAddress " + contact.getAddress());
+    return Arrays.asList(contact.getAllName(),  contact.getAddress(), contact.getHome(),
+            contact.getMobile(), contact.getWork(), contact.getEmail(), contact.getEmail2(), contact.getEmail3()).
+            stream().filter((s) -> !s.equals("")).collect(Collectors.joining("\n"));
+
   }
+//map(ContactAllDetailsTests::cleanedEditData)
+  private String mergeDetailsData(ContactData contact) {
+    return Arrays.asList(contact.getAllData()).
+            stream().filter((s) -> !s.equals("")).map(ContactAllDetailsTests::cleanedDetData).
+            collect(Collectors.joining("\n")).replaceAll("\n\n","\n");
+
+  }
+ 
+
+  public static String cleanedDetData(String details) {
+    return details.replaceAll("[H: ,M: ,W: ]", "");
+  }
+  public static String cleanedEditData(String details) {
+    return details.replaceAll("\\s", "");
+  }
+
 }
-
