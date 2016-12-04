@@ -38,23 +38,20 @@ public class ContactAllDetailsTests extends TestBase {
     System.out.println("getAddress " + contact.getAddress());
     return Arrays.asList(contact.getAllName(),  contact.getAddress(), contact.getHome(),
             contact.getMobile(), contact.getWork(), contact.getEmail(), contact.getEmail2(), contact.getEmail3()).
-            stream().filter((s) -> !s.equals("")).collect(Collectors.joining("\n"));
+            stream().filter((s) -> !s.equals("")).collect(Collectors.joining("\n")).replaceAll("\\s", "");
 
   }
 //map(ContactAllDetailsTests::cleanedEditData)
   private String mergeDetailsData(ContactData contact) {
     return Arrays.asList(contact.getAllData()).
             stream().filter((s) -> !s.equals("")).map(ContactAllDetailsTests::cleanedDetData).
-            collect(Collectors.joining("\n")).replaceAll("\n\n","\n");
+            collect(Collectors.joining("\n")).replaceAll("\n\n","\n").replaceAll("\\s", "");
 
   }
- 
+
 
   public static String cleanedDetData(String details) {
     return details.replaceAll("[H: ,M: ,W: ]", "");
-  }
-  public static String cleanedEditData(String details) {
-    return details.replaceAll("\\s", "");
   }
 
 }
