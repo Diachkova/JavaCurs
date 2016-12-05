@@ -2,6 +2,7 @@ package home.two.addressbook.appmanager;
 
 import org.openqa.selenium.*;
 
+import java.io.File;
 import java.util.List;
 
 public class HelperBase {
@@ -40,6 +41,17 @@ public class HelperBase {
         }
     }
   }
+
+  protected void attach(By locator, File file) {
+    if (isElementPresent(By.name("photo"))) {
+      if (file != null) {
+        getElement(locator).sendKeys(file.getAbsolutePath());
+      }
+    }else {
+      throw new RuntimeException("file not found");
+     }
+    }
+
 
 
 

@@ -24,6 +24,7 @@ public class ContactHelper extends HelperBase {
     type(By.name("middlename"), contactData.getMiddleName());
     type(By.name("lastname"), contactData.getSurname());
     type(By.name("nickname"), contactData.getNik());
+    attach(By.name("photo"), contactData.getPhoto());
     type(By.name("title"), contactData.getTitle());
     type(By.name("company"), contactData.getCompany());
     type(By.name("address"), contactData.getAddress());
@@ -32,6 +33,8 @@ public class ContactHelper extends HelperBase {
     type(By.name("work"), contactData.getWork());
     type(By.name("fax"), contactData.getFax());
     type(By.name("email"), contactData.getEmail());
+
+
 
     if (creation) {
       new Select(getElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());

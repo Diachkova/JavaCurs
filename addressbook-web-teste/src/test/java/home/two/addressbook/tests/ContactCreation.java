@@ -11,7 +11,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactCreation extends TestBase {
 
-  @Test(enabled = false)
+  @Test
   public void testContactCreation() {
     app.goTo().contactPage();
     Contacts before = app.contact().allC();
@@ -19,7 +19,7 @@ public class ContactCreation extends TestBase {
     File photo = new File("src/test/resources/stru.png");
     ContactData contact = new ContactData().withName("Nadia").withMiddleName("Yurievna").
             withSurname("Diachkova").withAddress("MyOwn").
-            withHome("111").withEmail("terra72@inbox.ru").withPhoto(photo);
+            withHome("111").withEmail("terra72@inbox.ru").withGroup("Test1").withPhoto(photo);
     app.contact().createContact(contact);
     assertThat(app.contact().count(), equalTo(before.size()+1));
     Contacts after = app.contact().allC();
@@ -28,7 +28,7 @@ public class ContactCreation extends TestBase {
             before.withCAdded(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
   }
 
-  @Test
+  @Test(enabled = false)
   public void testCurrentDir() {
     File currentDir = new File(".");
     System.out.println(currentDir.getAbsolutePath());

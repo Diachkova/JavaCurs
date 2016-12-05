@@ -24,6 +24,7 @@ public class ContactData {
   private String allAddress;
   private String allEmail;
   private String allData;
+  private File photo;
 
   public File getPhoto() {
     return photo;
@@ -34,7 +35,7 @@ public class ContactData {
     return this;
   }
 
-  private File photo;
+
 
   public String getAllName() {
     return allName;
