@@ -16,7 +16,7 @@ public class ContactCreation extends TestBase {
     app.goTo().contactPage();
     Contacts before = app.contact().allC();
     System.out.println("before " + before.size());
-    File photo = new File("src/test/resourses/stru.png");
+    File photo = new File("src/test/resources/stru.png");
     ContactData contact = new ContactData().withName("Nadia").withMiddleName("Yurievna").
             withSurname("Diachkova").withAddress("MyOwn").
             withHome("111").withEmail("terra72@inbox.ru").withPhoto(photo);
@@ -32,5 +32,9 @@ public class ContactCreation extends TestBase {
   public void testCurrentDir() {
     File currentDir = new File(".");
     System.out.println(currentDir.getAbsolutePath());
+    File photo = new File("src/test/resources/stru.png");
+    System.out.println(photo.getAbsolutePath());
+    System.out.println(photo.exists());
+
   }
 }
