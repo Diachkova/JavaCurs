@@ -18,16 +18,15 @@ public class GroupCreationTests extends TestBase {
   @DataProvider
   public Iterator<Object[]> validGroups() {
     ArrayList<Object[]> list = new ArrayList<Object[]>();
-    list.add(new Object[] {"test1", "header1", "footer1"});
-    list.add(new Object[] {"test2", "header2", "footer2"});
-    list.add(new Object[] {"test3", "header3", "footer3"});
+    list.add(new Object[] {new GroupData().withGroupName("test1").withHeader("header1").withFooter("footer1")});
+    list.add(new Object[] {new GroupData().withGroupName("test2").withHeader("header2").withFooter("footer2")});
+    list.add(new Object[] {new GroupData().withGroupName("test3").withHeader("header3").withFooter("footer3")});
     return list.iterator();
   }
 
 
   @Test(dataProvider = "validGroups")
-  public void testGroupCreation(String name, String header, String footer) {
-    GroupData group = new GroupData().withGroupName(name).withHeader(header).withFooter(footer);
+  public void testGroupCreation(GroupData group) {
     app.goTo().groupPage();
     Groups before = app.group().all();
     System.out.println("before " + before);
@@ -47,8 +46,7 @@ public class GroupCreationTests extends TestBase {
     app.group().create(group);
     assertThat(app.group().count(), equalTo(before.size()));
     Groups after = app.group().all();
-    assertThat(after, equalTo(
-            before.withAdded(group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
+    assertThat(after, equalTo(before));
   }
 
 }
