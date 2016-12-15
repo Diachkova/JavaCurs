@@ -1,0 +1,23 @@
+<list>
+  <home.two.addressbook.model.ContactData>
+    <name>Name0</name>
+    <surname>Surname0</surname>
+    <address>Address0</address>
+    <email>Email@0</email>
+    <home>111110</home>
+  </home.two.addressbook.model.ContactData>
+  <home.two.addressbook.model.ContactData>
+    <name>Name1</name>
+    <surname>Surname1</surname>
+    <address>Address1</address>
+    <email>Email@1</email>
+    <home>111111</home>
+  </home.two.addressbook.model.ContactData>
+  <home.two.addressbook.model.ContactData>
+    <name>Name2</name>
+    <surname>Surname2</surname>
+    <address>Address2</address>
+    <email>Email@2</email>
+    <home>111112</home>
+  </home.two.addressbook.model.ContactData>
+</list>

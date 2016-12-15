@@ -1,23 +1,31 @@
 package home.two.addressbook.model;
 
+import com.google.gson.annotations.Expose;
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
+
 import java.io.File;
 
 public class ContactData {
-
-  private int id = Integer.MAX_VALUE;;
+  @XStreamOmitField
+  private int id = Integer.MAX_VALUE;
+  @Expose
   private String name;
   private String middleName;
+  @Expose
   private String surname;
   private String nik;
   private String title;
   private String company;
+  @Expose
   private String address;
+  @Expose
   private String email;
   private String email2;
   private String email3;
   private String fax;
   private String work;
   private String mobile;
+  @Expose
   private String home;
   private String allPhones;
   private String group;
