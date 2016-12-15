@@ -4,20 +4,23 @@
     "surname": "Surname0",
     "address": "Address0",
     "email": "Email@0",
-    "home": "111110"
+    "home": "111110",
+    "group": "test0"
   },
   {
     "name": "Name1",
     "surname": "Surname1",
     "address": "Address1",
     "email": "Email@1",
-    "home": "111111"
+    "home": "111111",
+    "group": "test0"
   },
   {
     "name": "Name2",
     "surname": "Surname2",
     "address": "Address2",
     "email": "Email@2",
-    "home": "111112"
+    "home": "111112",
+    "group": "test0"
   }
 ]

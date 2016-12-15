@@ -37,9 +37,9 @@ public class ContactHelper extends HelperBase {
 
 
     if (creation) {
-      new Select(getElement(By.name("test0"))).selectByVisibleText(contactData.getGroup());
+      new Select(getElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
     } else {
-      Assert.assertFalse(isElementPresent(By.name("test0")));
+      Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
   }
 
@@ -152,7 +152,7 @@ public class ContactHelper extends HelperBase {
       String allPhones = element.findElements(By.tagName("td")).get(5).getText();
       String allAddress = element.findElements(By.tagName("td")).get(3).getText();
       String allEmail = element.findElements(By.tagName("td")).get(4).getText();
-      System.out.println("got all email=" + allEmail + ", allAddress = " + allAddress);
+      //System.out.println("got all email=" + allEmail + ", allAddress = " + allAddress);
       contactCache.add(new ContactData().withId(id)
               .withName(name).withSurname(surname).withAllPhones(allPhones).
                       withAllAddress(allAddress).withAllEmail(allEmail));
