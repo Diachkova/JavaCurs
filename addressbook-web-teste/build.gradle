@@ -14,3 +14,9 @@ dependencies {
 
 
 }
+
+test {
+    useTestNG {
+        suites 'src/test/resources/testng.xml'
+    }
+}
