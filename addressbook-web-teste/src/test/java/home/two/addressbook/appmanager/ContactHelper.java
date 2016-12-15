@@ -37,9 +37,9 @@ public class ContactHelper extends HelperBase {
 
 
     if (creation) {
-      new Select(getElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+      new Select(getElement(By.name("test0"))).selectByVisibleText(contactData.getGroup());
     } else {
-      Assert.assertFalse(isElementPresent(By.name("new_group")));
+      Assert.assertFalse(isElementPresent(By.name("test0")));
     }
   }
 
