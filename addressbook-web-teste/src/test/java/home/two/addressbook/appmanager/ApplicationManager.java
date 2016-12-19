@@ -18,14 +18,13 @@ import java.util.concurrent.TimeUnit;
 public class ApplicationManager {
   private final Properties properties;
   public WebDriver wd;
-
-  private ContactHelper contactHelper;
   private NavigationHelper navigationHelper;
   private GroupHelper groupHelper;
   private SessionHelper sessionHelper;
   private String browser;
+  private ContactHelper contactHelper;
 
-  public ApplicationManager(String browser) throws IOException {
+  public ApplicationManager(String browser) {
     this.browser = browser;
     properties = new Properties();
 
@@ -49,9 +48,10 @@ public class ApplicationManager {
 
     wd.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     wd.get(properties.getProperty("web.baseUrl"));
+    System.out.println(properties);
     groupHelper = new GroupHelper(wd, this);
-    navigationHelper = new NavigationHelper(wd);
     contactHelper = new ContactHelper(wd, this);
+    navigationHelper = new NavigationHelper(wd);
     sessionHelper = new SessionHelper(wd);
     sessionHelper.login(properties.getProperty("web.adminLogin"), properties.getProperty("web.adminPassword"));
 
